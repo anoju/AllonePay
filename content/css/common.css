@@ -208,9 +208,14 @@ Layout
 .lock body{height:100%;overflow:hidden;-webkit-overflow-scrolling:none;}
 .lock #container{position:fixed;left:0;bottom:0;width:100%;-webkit-overflow-scrolling:none;}
 
-#container{position:relative;min-height:100vh;padding-bottom:54px;}
+#container{position:relative;min-height:100vh;}
+#container.add_fixed{padding-bottom:54px;}
+#container.bg_gray{background-color:#f8f8f8;}
 #contents{padding:30px 0;}
 .section{padding:0 20px;}
+
+[class*=min_height_btn-]{padding-bottom:30px;}
+.min_height_btn-104{min-height:calc(100vh - 104px)}
 
 /* ==========================================================================
 component
@@ -294,7 +299,8 @@ div.tit_h4 .tit{font-size:1.5rem;color:#111}
 .button.block{display:block;}
 .button.w100{padding-left:0;padding-right:0;}
 
-.btn_wrap{margin-left:-3px;margin-right:-3px;}
+.btn_wrap{margin-top:30px;margin-left:-3px;margin-right:-3px;}
+[class*=min_height_btn-]+.btn_wrap{margin-top:0;}
 .btn_wrap .flex+.flex{margin-top:6px;}
 .btn_wrap .button{margin:0 3px;width:calc(100% - 6px);}
 .btn_wrap.group{margin-left:0;margin-right:0;}
@@ -304,6 +310,7 @@ div.tit_h4 .tit{font-size:1.5rem;color:#111}
 .section>.btn_wrap.group.out{margin-left:-20px;margin-right:-20px;}
 .btn_wrap.group.out .button:last-child{border-right-width:0;}
 
+.btn_wrap.bottom_fixed{margin-top:0;}
 .btn_wrap.bottom_fixed>div{position:fixed;left:0;bottom:0;width:100%;margin-top:0;z-index:100;}
 .btn_wrap.bottom_fixed .button{border-radius:0;margin:0;width:auto;}
 .pop_btn .button{border-radius:0;margin:0;width:auto;}
@@ -647,6 +654,7 @@ html.isApp.ios.inpFocus .tab_wrap.fixed .tab_track{position:absolute;top:0;}
 
 /*txt_list*/
 .txt_list{font-size:1.3rem;color:#666666;}
+.txt_list.box{margin-top:40px;padding:17px 12px;background:#f6f6f6;border-radius:4px;}
 .txt_list ul,
 .txt_list ol,
 .txt_list li,
@@ -694,11 +702,12 @@ html.isApp.ios.inpFocus .tab_wrap.fixed .tab_track{position:absolute;top:0;}
 .table table{word-break:break-all;font-size:1.4rem;}
 .table table th,
 .table table td{padding:18px 15px;border:1px solid #ddd;border-width:0 1px 1px 0;}
-.table table th{color:#666;background:#f0f0f0;}
-.table table td{color:#666}
+.table table th{color:#666;background:#f0f0f0;font-weight:400;}
+.table table td{color:#111}
 .table table th:last-child,
 .table table td:last-child{border-right-width:0;}
 .table table tbody th{text-align:left;}
+.table table tbody th ~ td{text-align:right;}
 .table table colgroup+tbody th{border-right-width:0;}
 
 .tbl_scroll{position:relative;border-bottom:1px solid #ddd;overflow:auto;min-height:150px;max-height:60vh;-webkit-overflow-scrolling:touch;}
