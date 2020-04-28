@@ -14,7 +14,7 @@ import
 reset
 ========================================================================== */
 html{height:100%;font-size:62.5%;/*-webkit-touch-callout:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;*/}
-body{font:normal 1.5rem/1.5 'Roboto', 'Noto Sans KR', 'Apple SD Gothic Neo', 'AppleSDGothicNeo', sans-serif;font-weight:400;color:#333;word-break:keep-all;/*letter-spacing:-0.05em;*/text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;}
+body{font:normal 1.4rem/1.5 'Roboto', 'Noto Sans KR', 'Apple SD Gothic Neo', 'AppleSDGothicNeo', sans-serif;font-weight:400;color:#333;word-break:keep-all;/*letter-spacing:-0.05em;*/text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;}
 html.ie9 body, html.ie10 body{font-family:'Noto Sans KR', 'Apple SD Gothic Neo', 'AppleSDGothicNeo', sans-serif;font-size:15px;}
 h1,h2,h3,h4,h5,h6,html,body,div,span,applet,object,iframe,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,sub,sup,tt,var,b,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,audio,canvas,details,figcaption,figure,footer,header,mark,menu,meter,nav,output,progress,section,summary,time,video{margin:0;padding:0;border:0;box-sizing:border-box;}
 h1,h2,h3,h4,h5,h6,th,strong,b{font-weight:500;}
@@ -197,6 +197,7 @@ common
 .t_keyword{color:#ffb81c;}
 
 .hr_line{display:block;border:0 none;height:10px;margin:35px 0;background:#f8f8f8;}
+.hr_line.ty2{height:1px;background:#dadada;margin:30px 0;}
 .section .hr_line{margin-left:-20px;margin-right:-20px;}
 
 
@@ -258,7 +259,7 @@ div.tit_h2 .tit{font-size:1.8rem;color:#111}
 div.tit_h3 .tit{font-size:1.6rem;color:#111}
 .tit_h4{margin-top:25px;}
 .tit_h4:not(div),
-div.tit_h4 .tit{font-size:1.4rem;color:#111}
+div.tit_h4 .tit{font-size:1.5rem;color:#111}
 
 /*button*/
 .button{position:relative;display:inline-block;width:auto;height:44px;line-height:42px;padding:0 11px;border:1px solid transparent;text-align:center;vertical-align:middle;font-size:1.5rem;font-weight:500;white-space:nowrap;text-decoration:none;overflow:hidden;box-sizing:border-box;border-radius:4px;-webkit-appearance:none;}
@@ -645,6 +646,7 @@ html.isApp.ios.inpFocus .tab_wrap.fixed .tab_track{position:absolute;top:0;}
 .range_slider .i_val{width:auto !important;padding-right:20px !important;border-bottom:0 none !important;height:auto !important;}
 
 /*txt_list*/
+.txt_list{font-size:1.3rem;color:#666666;}
 .txt_list ul,
 .txt_list ol,
 .txt_list li,
@@ -661,7 +663,8 @@ html.isApp.ios.inpFocus .tab_wrap.fixed .tab_track{position:absolute;top:0;}
 .txt_list .dot,
 .txt_list .dash{position:relative;padding-left:15px;}
 .txt_list .dot:before,
-.txt_list .dash:before{content:'';display:block;position:absolute;left:6px;top:0.56em;width:3px;height:3px;background-color:#666;}
+.txt_list .dash:before{content:'';display:block;position:absolute;left:6px;top:0.6em;width:3px;height:3px;background-color:#666;}
+.txt_list .dot:before{border-radius:50%;}
 .txt_list .dash:before{left:5px;width:5px;height:1px;margin-top:1px;}
 .fc_gray>.dot:before,
 .fc_gray>.dash:before,
