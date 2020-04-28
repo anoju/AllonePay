@@ -456,6 +456,7 @@ html:not(.isApp) .checkbox input:focus+i{box-shadow:0px 0px 1px 1px rgba(0,97,25
 .checkbox input:checked+i{background:#3182f7;border-color:#3182f7;}
 .checkbox input:checked+i:after{border-color:#fff;}
 .checkbox input:checked+i:after{-webkit-animation:chkeckboxAni 0.2s linear;animation:chkeckboxAni 0.2s linear;}
+.chk_child .checkbox input:checked+i:after{border-color:#3182f7;}
 .radio input:disabled+i,
 .checkbox input:disabled+i{border-color:#f0f0f0;background-color:#f0f0f0;}
 .radio input:disabled+i:after{border-color:#bbb;}
