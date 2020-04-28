@@ -2,9 +2,9 @@
 
 body{font-size:14px;}
 #gHeader{position:fixed;top:0;left:0;width:100%;height:60px;background-color:#20864d;z-index:100;}
-.g_util h1{position:relative;top:11px;left:30px;width:200px;text-align:center;}
-.g_util h1 a{display:block;color:#fff;font-size:20px;line-height:38px;text-align:left;}
-.g_util h1 img{height:28px;}
+.g_util h1{position:absolute;top:50%;left:30px;width:200px;text-align:center;transform:translateY(-50%);}
+.g_util h1 a{display:block;color:#fff;font-size:20px;line-height:1;text-align:left;}
+.g_util h1 img{height:38px;vertical-align:top;}
 .g_util .btn_nav{display:none;position:absolute;top:5px;left:10px;width:40px;height:40px;background:none;z-index:999;}
 .g_util .btn_nav span{position:absolute;top:50%;left:50%;width:28px;height:2px;margin:-1px 0 0 -14px;background-color:#157841;text-indent:-9999px;transition:all 0.3s ease-in-out;}
 .g_util .btn_nav span:before, .g_util .btn_nav span:after{content:'';display:block;position:absolute;left:0;width:28px;height:2px;background-color:#157841;transition:all 0.3s ease-in-out;}
@@ -43,9 +43,8 @@ body{font-size:14px;}
 @media screen and (max-width: 1024px){
 	body{font-size:12px;}
 	#gHeader{height:50px;}
-	.g_util h1{top:auto;left:auto;width:auto;padding:6px 0;text-align:center;}
-	.g_util h1 a{display:inline-block;vertical-align:top;}
-	.g_util h1 img{height:22px;}
+	.g_util h1{left:50%;width:auto;text-align:center;transform:translate(-50%,-50%);}
+	.g_util h1 img{height:30px;}
 	.g_util .btn_nav{display:block;}
 	.g_project{top:8px;right:10px;width:90px;transition:all 0.3s ease-in-out;}
 	.g_project .current{width:100%;transition:all 0.3s ease-in-out;border:none;text-align:right;}
