@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>올원페이</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<link rel="stylesheet"href="../../css/common.css">
+<link rel="stylesheet"href="../../css/contents.css">
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/jquery-ui-1.12.1.min.js"></script>
+<script src="../../js/ui_plugins.js"></script>
+<script src="../../js/ui_front.js"></script>
+</head>
+<body>
+<div id="container">
+	<section id="contents">
+		<div data-include-html="inc_guide_navi.html"></div>
+		<div class="section">
+			<h2 class="gd__h1">jq-ui 달력</h2>
+			<div class="form_item">
+				<label for="inpDate1" class="fm_lb">기본</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="inpDate1" class="datepicker" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="inpDate2" class="fm_lb">오늘 이전 선택</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="inpDate2" class="datepicker" data-max="today" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="inpDate3" class="fm_lb">오늘 이후 선택</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="inpDate3" class="datepicker" data-min="today" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="inpDate4" class="fm_lb">-5일 이전 선택</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="inpDate4" class="datepicker" data-max="-5d" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="inpDate5" class="fm_lb">+3달 이후 선택</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="inpDate5" class="datepicker" data-min="+3m" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="inpDate6" class="fm_lb">-2주 ~ +1년 사이 선택</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="inpDate6" class="datepicker" data-min="-2w" data-max="+1y" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="inpDate7" class="fm_lb">기간 선택</label>
+				<div class="fm_cont">
+					<div class="tbl date_wrap"><!-- 달력 2개일때 data_wrap 클래스 필요-->
+						<div class="td">
+							<div class="input"><input type="tel" id="inpDate7" class="datepicker" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+						</div>
+						<div class="td dash">-</div>
+						<div class="td">
+							<div class="input"><input type="tel" id="inpDate8" class="datepicker" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+						</div>
+					</div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+
+			<h2 class="gd__h1">스크롤 달력</h2>
+			<h3 class="gd__h2">날짜</h3>
+			<div class="form_item">
+				<label for="sclDate1" class="fm_lb">기본</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="sclDate1" class="s_datepicker" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="sclDate2" class="fm_lb">날짜값이 있을 경우</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="sclDate2" class="s_datepicker" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력" value="2010.12.25"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="sclDate3" class="fm_lb">data-range="5" (range:년도 기준적용)</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="sclDate3" class="s_datepicker" data-range="5" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="sclDate3_1" class="fm_lb">data-day-step="5"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="sclDate3_1" class="s_datepicker" data-day-step="5" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="sclDate4" class="fm_lb"> data-range="7:0"(이전년도:이후년도)</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="sclDate4" class="s_datepicker" data-range="7:0" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="date5" class="fm_lb">data-min="today"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="date5" class="s_datepicker" data-min="today" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="date6" class="fm_lb">data-min="Y:1,M:2,D:1"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="date6" class="s_datepicker" data-min="Y:1,M:2,D:1" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="date10" class="fm_lb">data-min-date="20200125"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="date10" class="s_datepicker" data-min-date="20200125" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="date7" class="fm_lb">data-max="today"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="date7" class="s_datepicker" data-max="today" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="date8" class="fm_lb">data-max="Y:2,M:3"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="date8" class="s_datepicker" data-max="Y:2,M:3" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="date9" class="fm_lb">data-max-date="20200531"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="date9" class="s_datepicker" data-max-date="20200531" maxlength="10" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+					<div class="error_txt">기간를 입력해주세요.</div>
+				</div>
+			</div>
+			
+			<h3 class="gd__h2">시간</h3>
+			<div class="form_item">
+				<label for="time1" class="fm_lb">시간</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="time1" class="s_datepicker" data-type="time" maxlength="5" placeholder="hh:mm" title="hh:mm 형식으로 입력"></div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="time2" class="fm_lb">data-min-hour="9",data-max-hour="17"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="time2" class="s_datepicker" data-type="time" data-min-hour="9" data-max-hour="17" maxlength="5" placeholder="hh:mm" title="hh:mm 형식으로 입력"></div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="time3" class="fm_lb">data-min-step="10"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="time3" class="s_datepicker" data-type="time" data-min-step="10" maxlength="5" placeholder="hh:mm" title="hh:mm 형식으로 입력"></div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="time4" class="fm_lb">data-min-hour="10",data-max-hour="19",data-min-step="20"</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="time4" class="s_datepicker" data-type="time" data-min-hour="10" data-max-hour="19" data-min-step="20" maxlength="5" placeholder="hh:mm" title="hh:mm 형식으로 입력"></div>
+				</div>
+			</div>
+
+			<h3 class="gd__h2">full</h3>
+			<div class="form_item">
+				<label for="fullTime1" class="fm_lb">날짜 및 시간(data-type="full")</label>
+				<div class="fm_cont">
+					<div class="input"><input type="tel" id="fullTime1" class="s_datepicker" data-type="full" maxlength="16" placeholder="YYYY.MM.DD hh:mm" title="YYYY.MM.DD hh:mm 형식으로 입력"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+</body>
+</html>

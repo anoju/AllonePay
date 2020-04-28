@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>올원페이</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<link rel="stylesheet"href="../../css/common.css">
+<link rel="stylesheet"href="../../css/contents.css">
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/jquery-ui-1.12.1.min.js"></script>
+<script src="../../js/ui_plugins.js"></script>
+<script src="../../js/ui_front.js"></script>
+</head>
+<body>
+<div id="container">
+	<section id="contents">
+		<div data-include-html="inc_guide_navi.html"></div>
+		<div class="section">
+			<h2 class="gd__h1">공유하기</h2>
+			<div class="btn_wrap">
+				<div class="flex">
+					<div class="blind"><input type="text" class="copyUrl"></div>
+					<a href="#" class="button h48" onclick="share.copy();">주소복사</a>
+				</div>
+				<div class="flex mt10">
+					<a href="#" class="button h48 blue" onclick="share.sns('facebook');">페이스북</a>
+					<a href="#" class="button h48 gray" onclick="share.sns('twitter');">트위터</a>
+				</div>
+				<div class="flex mt10">
+					<a href="#" class="button h48 blue" onclick="share.sns('google_plus');">구글+</a>
+					<a href="#" class="button h48 gray" onclick="share.sns('pinterest');">pinterest</a>
+				</div>
+				<div class="flex mt10">
+					<a href="#" class="button h48 blue" onclick="share.sns('naver_blog');">네이버블로그</a>
+					<a href="#" class="button h48 gray" onclick="share.sns('naver_band');">네이버밴드</a>
+				</div>
+				<div class="flex mt10">
+					<a href="#" class="button h48 blue" onclick="share.sns('kakao_talk');">카카오톡</a>
+					<a href="#" class="button h48 gray" onclick="share.sns('kakao_story');">카카오스토리</a>
+				</div>
+			</div>
+
+			<h2 class="gd__h1">select 기능 확인</h2>
+			<div class="form_item">
+				<label for="mail1" class="fm_lb">이메일</label>
+				<div class="fm_cont email_form">
+					<div class="tbl">
+						<div class="td w40"><div class="input"><input type="text" id="mail1" title="이메일 아이디 입력"></div></div>
+						<div class="td dash ty2">@</div>
+						<div class="td w60 email_sel">
+							<div class="select">
+								<select title="이메일 도메인 선택" id="mailSelect">
+									<option value="" selected="selected">이메일계정선택</option>
+									<option value="naver.com">naver.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="nate.com">nate.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="yahoo.com">yahoo.com</option>
+									<option value="empal.com">empal.com</option>
+									<option value="freechal.com">freechal.com</option>
+									<option value="chol.com">chol.com</option>
+									<option value="dreamwiz.com">dreamwiz.com</option>
+									<option value="hanmir.com">hanmir.com</option>
+									<option value="hotmail.com">hotmail.com</option>
+									<option value="korea.com">korea.com</option>
+									<option value="lycos.com">lycos.com</option>
+									<option value="msn.com">msn.com</option>
+									<option value="paran.com">paran.com</option>
+									<option value="me.com">me.com</option>
+									<option value="etc">직접입력</option>
+								</select>
+							</div>
+						</div>
+						<div class="td w60 email_inp" style="display:none;">
+							<div class="input"><input type="text" title="이메일 도메인 직접입력" placeholder="직접입력"></div>
+							<a href="#" class="btn_sel"><span class="blind">이메일 도메인 직접입력 취소</span></a>
+						</div>
+					</div>
+					<div class="error_txt">이메일를 입력해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="CrdNbr" class="fm_lb">카드선택</label>
+				<div class="fm_cont">
+					<div class="tbl">
+						<div class="td w_120">
+							<div class="select">
+								<select id="CrdNbr" name="CrdNbr" title="카드 선택">
+									<option value="">카드선택</option>
+									<option value="allCard">전체카드</option>
+									<option value="nhcard">전체NH채움카드</option>
+									<option value="bccard">전체NHBC카드</option>
+									<option value="1">5430-****-****-4747 채움 스마티(제*구)</option>
+									<option value="2">5430-****-****-4747 올바른 OIL&amp;PASS카드(제*구)</option>
+									<option value="3">5430-****-****-4747 라이언 치즈 체크카드(제*구)</option>
+									<option value="4">5430-****-****-4747 NH20 해봄체크(제*구)</option>
+									<option value="5" selected>5430-****-****-4747 NH농협 콕체크(면세유)(제*구)</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="error_txt">카드를 선택해주세요.</div>
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="bank1" class="fm_lb">은행/계좌번호</label>
+				<div class="fm_cont">
+					<div class="tbl">
+						<div class="td w_120">
+							<div class="select">
+								<select id="bank1" title="은행 선택">
+									<option value="" num="0">은행선택</option><!-- '은행 선택' value 값을 빈값으로 비워놔야 선택하는 팝업에서 안나옵니다. -->
+									<option value="011" num="1">농협(농협은행)</option>
+									<option value="012" num="2">농협(농·축협)</option>
+									<option value="039" num="3">경남은행</option>
+									<option value="034" num="4">광주은행</option>
+									<option value="004" num="5">국민은행</option>
+									<option value="003" num="6">기업은행</option>
+									<option value="031" num="7">대구은행</option>
+									<option value="055" num="8">도이치은행</option>
+									<option value="032" num="9">부산은행</option>
+									<option value="002" num="10">산업은행</option>
+									<option value="050" num="11">상호저축</option>
+									<option value="045" num="12">새마을금고</option>
+									<option value="007" num="13">수협</option>
+									<option value="088" num="14">신한은행(구조흥)</option>
+									<option value="048" num="15">신협</option>
+									<option value="020" num="16">우리은행</option>
+									<option value="071" num="17">우체국</option>
+									<option value="037" num="18">전북은행</option>
+									<option value="023" num="19">한국스탠다드차타드(구제일)</option>
+									<option value="035" num="20">제주은행</option>
+									<option value="081" num="21">KEB하나은행</option>
+									<option value="027" num="22">한국씨티(구한미)</option>
+									<option value="089" num="23">케이뱅크</option>
+									<option value="090" num="24">카카오뱅크</option>
+									<option value="209" num="25">유안타증권</option>
+									<option value="218" num="26">KB증권</option>
+									<option value="238" num="27">미래에셋대우</option>
+									<option value="240" num="28">삼성증권</option>
+									<option value="243" num="29">한국투자증권</option>
+									<option value="247" num="30">NH투자증권</option>
+									<option value="261" num="31">교보증권</option>
+									<option value="262" num="32">하이투자증권</option>
+									<option value="263" num="33">에이치엠씨투자증권</option>
+									<option value="264" num="34">키움증권</option>
+									<option value="265" num="35">이베스트증권</option>
+									<option value="266" num="36">에스케이증권</option>
+									<option value="267" num="37">대신증권</option>
+									<option value="268" num="38">아이엠투자증권</option>
+									<option value="269" num="39">한화투자증권</option>
+									<option value="270" num="40">하나금융투자</option>
+									<option value="278" num="41">신한금융투자</option>
+									<option value="279" num="42">동부증권</option>
+									<option value="280" num="43">유진투자증권</option>
+									<option value="287" num="44">메리츠종합금융증권</option>
+									<option value="290" num="45">부국증권</option>
+									<option value="291" num="46">신영증권</option>
+									<option value="292" num="47">엘아이지투자증권</option>
+								</select>
+							</div>
+						</div>
+						<div class="td">
+							<div class="input"><input type="tel" id="frm2_1" title="계좌번호 숫자만 입력" placeholder="&prime;-&prime; 없이 입력"></div>
+						</div>
+					</div>
+					<div class="error_txt">계좌번호를 입력해주세요.</div><!-- 에러메세지 입력영역 -->
+				</div>
+			</div>
+			<div class="form_item">
+				<div class="fm_lb">휴대폰인증</div>
+				<div class="fm_cont phone">
+					<ul class="btn_toggle grid col2 row2">
+						<li>
+							<input type="radio" id="phoneSKT" name="phoneRdo">
+							<label for="phoneSKT">SKT</label>
+						</li>
+						<li>
+							<input type="radio" id="phoneKT" name="phoneRdo">
+							<label for="phoneKT">KT</label>
+						</li>
+						<li>
+							<input type="radio" id="phoneLG" name="phoneRdo">
+							<label for="phoneLG">LGU+</label>
+						</li>
+						<li class="in_sel">
+							<input type="radio" id="phoneETC" name="phoneRdo">
+							<label for="phoneETC">알뜰폰</label>
+							<div class="select">
+								<select name="" id="" title="알뜰폰 통신사 선택">
+									<option value="">알뜰폰</option>
+									<option value="1">SKT 알뜰폰</option>
+									<option value="2">KT 알뜰폰</option>
+									<option value="3">LGU+ 알뜰폰</option>
+								</select>
+							</div>
+						</li>
+					</ul>
+					<div class="tbl mt10">
+						<div class="td w20">
+							<div class="select">
+								<select id="phoneNum2_1" title="연락처 식별번호 선택">
+									<option value="010" selected="selected">010</option>
+									<option value="012">012</option>
+									<option value="013">013</option>
+								</select>
+							</div>
+						</div>
+						<div class="td dash">-</div>
+						<div class="td">
+							<div class="input"><input type="tel" id="phoneNum2_2" title="연락처 나머지 7~8자리 숫자만 입력" placeholder="&prime;-&prime; 없이 입력"></div>
+						</div>
+						<div class="td va_mid w_110">
+							<a href="#" class="button h32 line round block ">인증번호 전송</a>
+							<!-- <a href="#" class="button line block h32">인증번호 재발송</a> -->
+						</div>
+					</div>
+					<div class="error_txt">연락처를 입력해주세요.</div><!-- 에러메세지 입력영역 -->
+					<div class="tbl mt10">
+						<div class="td">
+							<div class="input add_time">
+								<input type="tel" id="phoneNum2_3" title="인증번호 6자리 입력" placeholder="인증번호 6자리 입력" maxlength="6">
+								<span class="time">01:45</span>
+							</div>
+						</div>
+						<div class="td va_mid t_right w_150">
+							<a href="#" class="button h32 line round">확인</a>
+							<a href="#" class="button h32 line round">시간연장</a>
+						</div>
+					</div>
+					<div class="error_txt">인증번호를 입력해주세요.</div><!-- 에러메세지 입력영역 -->
+				</div>
+			</div>
+			<div class="form_item">
+				<div class="fm_lb">비밀번호</div>
+				<div class="fm_cont phone">
+					<div class="password">
+						<div class="dot" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+						<input type="password" maxlength="6" title="비밀번호 입력">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+</body>
+</html>

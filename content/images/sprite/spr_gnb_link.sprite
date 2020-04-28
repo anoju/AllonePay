@@ -1,0 +1,17 @@
+{
+   "style_name": "spr_gnb_link",
+   "images": [
+      "AFTER_MENU_13-01.png",
+      "AFTER_MENU_13-05.png",
+      "AFTER_MENU_13-06.png"
+   ],
+   "orientation": "vertical",
+   "padding": 0,
+   "custom_styles": {
+      "display": "inline-block"
+   },
+   "stylesheet": "css",
+   "path_prefix": "",
+   "output": "png",
+   "enable_cache_busting": true
+}

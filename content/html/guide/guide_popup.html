@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>올원페이</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<link rel="stylesheet"href="../../css/common.css">
+<link rel="stylesheet"href="../../css/contents.css">
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/jquery-ui-1.12.1.min.js"></script>
+<script src="../../js/ui_plugins.js"></script>
+<script src="../../js/ui_front.js"></script>
+<script>
+	$(function(){
+		$('#btnAlert').click(function(){
+			Layer.alert('얼럿창입니다.',function(){
+				console.log('얼럿 확인');
+			});
+			/*Layer.alert({
+				content:'얼럿창입니다.',
+				callback: function(){
+					console.log('얼럿 확인');
+				}
+			});*/
+		});
+		$('#btnConfirm').click(function(){
+			Layer.confirm('컨펌창입니다.',function(e){
+				if(e){
+					console.log('컨펌 확인');
+				}else{
+					console.log('컨펌 취소');
+				}
+			});
+		});
+		$('#btnPrompt').click(function(){
+			Layer.prompt('계좌번호를 입력해주세요.',function(e,val){
+				if(e){
+					console.log('prompt 확인');
+					$('#frm2_1').val(val);
+				}else{
+					console.log('prompt 취소');
+				}
+			});
+		});
+		
+
+		var msg = '신청하신 보험계약대출 300만원이 정상적으로 접수되었습니다.<br>3분 이내에 신청하신 계좌로 대출금이 지급됩니다.'
+		toastBox(msg);
+
+		//오늘하루 그만보기
+		//todayPop.init();
+
+		Loading.box('#box');
+	});
+</script>
+</head>
+<body>
+<div id="container">
+	<div id="contents">
+		<div data-include-html="inc_guide_navi.html"></div>
+		<div class="section">
+			<h2 class="gd__h1">팝업</h2>
+			<h3 class="gd__h2">레이어</h3>
+			<div class="btn_wrap mt20">
+				<div class="flex">
+					<a href="#" class="button h48 blue" onclick="Layer.open('#fullDialog')">풀팝업</a>
+					<a href="#" class="button h48 gray" onclick="Layer.open('#modalDialog')">모달팝업</a>
+				</div>
+			</div>
+			<div class="btn_wrap mt20">
+				<div class="flex">
+					<a href="#" class="button h48 blue" onclick="Layer.open('#bottomDialog1')">하단팝업(짧음)</a>
+					<a href="#" class="button h48 gray" onclick="Layer.open('#bottomDialog2')">하단팝업(길때)</a>
+				</div>
+			</div>
+			<div class="btn_wrap mt20">
+				<div class="flex">
+					<a href="win_pop.html" class="button h48 blue" target="_blank">팝업페이지</a>
+				</div>
+			</div>
+			<h3 class="gd__h2">select</h3>
+			<div class="form_item mt20">
+				<label for="bank_nm" class="fm_lb">은행/계좌번호</label>
+				<div class="fm_cont">
+					<div class="tbl">
+						<div class="td w_120">
+							<div class="select">
+								<select id="bank_nm" name="bank_nm" title="은행 선택"><option value="">은행선택</option><option value="002">산업은행</option><option value="003">기업은행</option><option value="004">국민은행</option><option value="081">KEB하나은행(구외환)</option><option value="007">수협중앙회</option><option value="011">농협</option><option value="020">우리은행</option><option value="023">SC제일은행</option><option value="027">씨티은행</option><option value="031">대구은행</option><option value="032">부산은행</option><option value="034">광주은행</option><option value="035">제주은행</option><option value="037">전북은행</option><option value="039">경남은행</option><option value="045">새마을금고</option><option value="048">신협</option><option value="050">상호저축은행</option><option value="071">우체국</option><option value="089">케이뱅크</option><option value="054">HSBC은행</option><option value="055">도이치은행</option><option value="057">JP모건체이스은행</option><option value="064">산림조합중앙회</option><option value="088">신한은행</option><option value="026">신한은행(구신한)</option><option value="209">유안타증권</option><option value="218">KB증권(구현대)</option><option value="230">미래에셋증권</option><option value="238">대우증권</option><option value="240">삼성증권</option><option value="243">한국투자증권</option><option value="247">NH투자증권(구우리투자)</option><option value="261">교보증권</option><option value="262">하이투자</option><option value="263">HMC증권</option><option value="265">이베스트투자증권(구이트레이드)</option><option value="266">SK증권</option><option value="267">대신증권</option><option value="268">메리츠종금증권(구아이엠투자)</option><option value="269">한화투자증권</option><option value="270">하나금융투자</option><option value="278">신한금융투자</option><option value="279">DB금융투자(구동부)</option><option value="280">유진투자증권</option><option value="287">메리츠종금증권</option><option value="289">NH농협증권</option><option value="290">부국증권</option><option value="291">신영증권</option><option value="292">케이프투자증권(구엘아이지)</option><option value="090">카카오뱅크</option></select>
+							</div>
+						</div>
+						<div class="td">
+							<div class="input"><input type="tel" id="frm2_1" title="계좌번호 숫자만 입력" placeholder="숫자만 입력"></div>
+						</div>
+					</div>
+					<div class="error_txt">계좌번호를 입력해주세요.</div>
+				</div>
+			</div>
+
+			<div class="form_item mt20">
+				<label for="CrdNbr2" class="fm_lb">카드선택</label>
+				<div class="fm_cont">
+					<div class="tbl">
+						<div class="td w_120">
+							<div class="select">
+								<select id="CrdNbr2" name="CrdNbr" title="카드 선택">
+									<option value="">카드선택</option>
+									<option value="allCard">전체카드</option>
+									<option value="nhcard">전체NH채움카드</option>
+									<option value="bccard">전체NHBC카드</option>
+									<option value="1">5430-****-****-4747 채움 스마티(제*구)</option>
+									<option value="2">5430-****-****-4747 올바른 OIL&amp;PASS카드(제*구)</option>
+									<option value="3">5430-****-****-4747 라이언 치즈 체크카드(제*구)</option>
+									<option value="4">5430-****-****-4747 NH20 해봄체크(제*구)</option>
+									<option value="5">5430-****-****-4747 NH농협 콕체크(면세유)(제*구)</option>
+									<option value="manual">직접입력</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="error_txt">카드를 선택해주세요.</div>
+				</div>
+			</div>
+			<h2 class="gd__h1">로딩</h2>
+			<div class="btn_wrap mt20">
+				<div class="flex">
+					<a href="#" class="button h48 blue" onclick="Loading.open();$(this).next().css('z-index',10000)">Loading.open();</a>
+					<a href="#" class="button h48 gray" onclick="Loading.close();$(this).removeAttr('style');">Loading.close();</a>
+				</div>
+			</div>
+			<div id="box" class="mt20">
+				<!-- <div class="loading_box">
+					<div class="tl"><div><div class="ld_lg" aria-hidden="true"><div class="lg_d"></div><div class="lg_b"></div></div><div class="blind">화면을 불러오는중입니다.</div></div></div>
+				</div> -->
+			</div>
+
+			<div class="btn_wrap bottom_fixed">
+				<div>
+					<div class="flex">
+						<a href="#" id="btnAlert" class="button h48">얼럿</a>
+						<a href="#" id="btnConfirm" class="button h48 gray">컨펌</a>
+						<a href="#" id="btnPrompt" class="button h48 black">입력</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 팝업 종류들 -->
+<div id="fullDialog" class="popup full" role="dialog"  aria-hidden="true">
+	<article class="pop_wrap">
+		<div class="pop_head">
+			<h1>전체팝업</h1>
+			<a href="#" class="pop_close ui-pop-close"><span class="blind">팝업창 닫기</span></a>
+		</div>
+		<div class="pop_cont">
+			<div class="section">
+				<!-- CMS 영역 -->
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				<div class="form_item">
+					<label for="inpName1" class="fm_lb">이름</label>
+					<div class="fm_cont">
+						<div class="input"><input type="text" id="inpName1" placeholder="이름입력"></div>
+						<div class="error_txt">이름을 입력해주세요.</div>
+					</div>
+				</div>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				팝업 컨텐츠<br>
+				<!-- //CMS 영역 -->
+			</div>
+		</div>
+		<div class="pop_btn btn_wrap bottom_fixed">
+			<div>
+				<div class="flex">
+					<a href="#" class="button h48 ui-pop-close">확인</a>
+				</div>
+			</div>
+		</div>
+	</article>
+</div>
+
+<div id="modalDialog" class="popup modal" role="dialog"  aria-hidden="true">
+	<article class="pop_wrap">
+		<div class="pop_head">
+			<h1>팝업 타이틀</h1>
+			<a href="#" class="pop_close ui-pop-close"><span class="blind">팝업창 닫기</span></a>
+		</div>
+		<div class="pop_cont">
+			<div class="section">
+				팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 팝업내용 
+			</div>
+		</div>
+		<div class="pop_btn btn_wrap bottom_fixed">
+			<div>
+				<div class="flex">
+					<a href="#" class="button h48" onclick="Layer.close('#modalDialog');">확인</a>
+				</div>
+			</div>
+		</div>
+	</article>
+</div>
+
+<div id="bottomDialog1" class="popup bottom" role="dialog"  aria-hidden="true">
+	<article class="pop_wrap">
+		<div class="pop_head no_head">
+			<h1>하단팝업제목</h1>
+			<a href="#" class="pop_close ui-pop-close"><span class="blind">팝업창 닫기</span></a>
+		</div>
+		<div class="pop_cont">
+			<div class="section">
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+			</div>
+		</div>
+	</article>
+</div>
+
+<div id="bottomDialog2" class="popup bottom" role="dialog"  aria-hidden="true">
+	<article class="pop_wrap">
+		<div class="pop_head">
+			<h1>하단팝업제목 하단팝업제목 하단팝업제목 하단팝업제목 하단팝업제목 하단팝업제목</h1>
+			<a href="#" class="pop_close ui-pop-close"><span class="blind">팝업창 닫기</span></a>
+		</div>
+		<div class="pop_cont">
+			<div class="section">
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+				텍스트 <br>
+			</div>
+		</div>
+		<div class="pop_btn btn_wrap bottom_fixed">
+			<div>
+				<div class="flex">
+					<a href="#" class="button h48" onclick="Layer.close('#bottomDialog2');">확인</a>
+				</div>
+			</div>
+		</div>
+	</article>
+</div>
+
+<div id="todayChkDialog" class="popup modal today" role="dialog"  aria-hidden="true">
+	<article class="pop_wrap">
+		<div class="pop_head">
+			<h1>오늘 그만보기 팝업</h1>
+			<a href="#" class="pop_close ui-pop-close"><span class="blind">팝업창 닫기</span></a>
+		</div>
+		<div class="pop_cont">
+			<div class="section">
+				팝업 ID로 그만보기 여부를 체크합니다.<br>
+				팝업 내용 <br>
+				팝업 내용 <br>
+				팝업 내용 <br>
+				팝업 내용 <br>
+				팝업 내용 <br>
+			</div>
+		</div>
+		<div class="fixed_bottom_button t1">
+			<div class="flex">
+				<a href="#" class="button ui-pop-close">확인</a>
+			</div>
+			<div class="today_chk">
+				<span class="checkbox small">
+					<input type="checkbox" id="todayChk" value="day"><i aria-hidden="true"></i>
+					<label for="todayChk">오늘하루 그만보기</label>
+				</span>
+			</div>
+		</div>
+	</article>
+</div>
+</body>
+</html>
