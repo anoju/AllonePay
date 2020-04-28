@@ -2353,6 +2353,38 @@ var sclCalendar = {
 	}
 };
 
+
+//리스트 관련 UI
+var listUI = {
+	winLoad:function(){
+		//토글실행
+		accordion.list('.ui-accordion','.tit a','.panel');
+		accordion.btn('.ui-toggle-btn');
+
+		//테이블 스크롤 가이드 실행
+		if($('.tbl_scroll').length){
+			tblUI.guideScl('.tbl_scroll');
+			tblUI.guide('.tbl_scroll');
+		}
+
+		//테이블 rowspan
+		if($('table th[rowspan]').length){
+			$('table th[rowspan]').each(function(){
+				var $this = $(this),
+					$idx = $this.index(),
+					$trIdx = ($this.parent().index()+1),
+					$tbody = $this.parent().parent(),
+					$rowspan = parseInt($this.attr('rowspan'));
+					for(var i = $trIdx;i < ($trIdx+$rowspan-1);i++){
+						$tbody.children().eq(i).children().eq($idx).addClass('l_line');
+					}
+			});
+		}
+	},
+	init:function(){
+		
+	}
+};
 //아코디언 함수
 var accordion = {
 	list:function(list,btn,panel,addClass,speed){

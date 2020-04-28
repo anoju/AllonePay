@@ -573,13 +573,13 @@ html:not(.isApp) .btn_toggle li input:focus+label{box-shadow:0px 0px 1px 1px rgb
 
 /* fixed tab */
 .tab_wrap{position:relative;margin-bottom:30px;}
-.tab_wrap.fixed{height:51px;}
+.tab_wrap.fixed{height:50px;}
 html.isApp.ios.inpFocus .tab_wrap.fixed .tab_track{position:absolute;top:0;}
 #contents>.tab_wrap:first-child,
 #contents>.section>.tab_wrap:first-child,
 .dialog_content>.section>.tab_wrap:first-child{margin-top:-30px;}
 .section .tab_wrap{margin-left:-20px;margin-right:-20px;}
-.tab_wrap .tabmenu{position:relative;overflow:hidden;border-top:1px solid #ddd;margin-bottom:0;}
+.tab_wrap .tabmenu{position:relative;overflow:hidden;margin-bottom:0;}
 .tab_wrap .tabmenu:before{content:'';display:block;}
 .tab_wrap.fixed .tabmenu{position:fixed;left:0;width:100%;top:0;background-color:#fff;z-index:20;}
 .tab_wrap .tabmenu li{position:relative;float:left;width:auto;padding:0 7.5px;}
