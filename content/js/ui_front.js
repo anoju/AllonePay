@@ -278,7 +278,7 @@ var Layer = {
 							if(type === 'confirm' || type === 'prompt'){
 							$html += '<button type="button" id="'+btnCancelId+'" class="button h48 gray">취소</button>';
 							}
-							$html += '<button type="button" id="'+btnActionId+'" class="button h48">확인</button>';
+							$html += '<button type="button" id="'+btnActionId+'" class="button h48 blue">확인</button>';
 						$html += '</div>';
 					$html += '</div>';
 				$html += '</div>';
@@ -448,7 +448,7 @@ var Layer = {
 			$popHtml += '</div>';
 		$popHtml += '</div>';
 
-		$('#wrap').append($popHtml);
+		$('body').append($popHtml);
 		if($isBank){
 			var isType2 = false;
 			$('#'+$popId+' .select_item_wrap.bank>li').each(function(){
