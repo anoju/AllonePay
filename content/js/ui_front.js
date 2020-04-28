@@ -3,22 +3,14 @@
  * 작성자 : 안효주 *
  ********************************/
 
-var _isDevice = "W"; /** 개발에서 받아와야하는 값: A-모바일앱, W-웹 **/
-
 $(function(){
-	common.isApp();
 	htmlnclude();
 	deviceCheck();
 	common.init();
 	Layer.init();
 	buttonUI.init();
 	tooltip.init();
-	scrollUI.init();
 	formUI.init();
-	listUI.init();
-
-	scrollItem.init();
-	materialUI.init();
 
 	$(window).scroll();
 	$(window).resize();
@@ -26,23 +18,12 @@ $(function(){
 
 $(window).on('load',function(){
 	//console.log('window load complete');
-	common.winLoad();
 	formUI.winLoad();
 	listUI.winLoad();
 	buttonUI.winLoad();
 	buttonUI.tabNavi();
 
 	swiperUI.init();
-	Loading.aria();
-
-	//이미지 미리로딩
-	var preLoadingImgArry = [
-		'/moweb/images/common/spr_ico_bank_logo.jpg',
-		'/moweb/images/common/spr_ico_certify.png',
-		'/moweb/images/common/spr_ico_online_process.png',
-		'/moweb/images/common/spr_service_icon.png'
-	];
-	//preLoadingImg(preLoadingImgArry);
 
 	$(window).scroll();
 	$(window).resize();
@@ -64,27 +45,8 @@ var htmlnclude = function(){
 				if(sta == 'success'){
 					console.log('Include '+$htmlFile+'!');
 					$this.children().unwrap();
-					if($htmlFile == 'top.html'){
-						common.fixed('#header');
-						common.header();
-						if(document.title.indexOf(' | ')>0){
-							var $docTit = document.title.split(' | ').shift();
-							common.title($docTit);
-						}else{
-							common.title();
-						}
-					}
-					if($htmlFile == 'gnb.html'){
-						common.gnb();
-					}
-
-					if($htmlFile == 'footer.html'){
-						common.footer();
-						if(!$('.main_content').length)buttonUI.top();
-					}
 
 					if($htmlFile == 'inc_guide_navi.html'){
-						//$('.gd__navi').find('.tab').eq($atvIdx-1).addClass('active');
 						$('.gd__navi').find('li').each(function(){
 							var $href = $(this).find('a').attr('href');
 							if($href == $fileName)$(this).addClass('active');
@@ -98,173 +60,24 @@ var htmlnclude = function(){
 	}
 };
 
-//로딩함수
-var Loading ={
-	speed:150,
-	open:function(txt){
-		var $html = '<div id="loading" class="hide">';
-			$html += '<div class="tl">';
-				$html += '<div>';
-					$html += '<div class="ld_img" aria-hidden="true"></div>';
-					if(!!txt){
-					$html +='<div class="txt">'+txt+'</div>';
-					}else{
-					$html += '<div class="blind">화면을 불러오는중입니다.</div>';
-					}
-				$html += '</div>';
-			$html += '</div>';
-		$html += '</div>';
-
-		if(!$('#loading').length)$('body').prepend($html);
-		$('#loading').stop(true,false).fadeIn(Loading.speed);
-	},
-	close:function(){
-		$('#loading').stop(true,false).fadeOut(Loading.speed,function(){
-			$(this).remove();
-		});
-	},
-	box:function(tar,height,txt){
-		var $wrapTag = 'div';
-		if($(tar).is('ul') || $(tar).is('ol'))$wrapTag = 'li';
-		if($(tar).is('dl'))$wrapTag = 'dd';
-		var $html = '<'+$wrapTag+' class="loading_box"';
-			if(!!height)$html +=' style="height:'+height+'px"';
-			$html += '>';
-			$html += '<div class="tl">';
-				$html += '<div>';
-					$html += '<div class="ld_img" aria-hidden="true"></div>';
-					if(!!txt){
-					$html += '<div class="txt">'+txt+'</div>';
-					}else{
-					$html += '<div class="blind">데이터를 불러오는중입니다.</div>';
-					}
-				$html += '</div>';
-			$html += '</div>';
-		$html += '</'+$wrapTag+'>';
-
-		$(tar).html($html);
-	},
-	dimmedClass:'.loading_dimmed',
-	aria:function(){
-		var $box = $('.section_box');
-		$box.each(function(){
-			var $this = $(this),
-				$inBox = $this.find('.section_box_in');
-			if($this.find(Loading.dimmedClass).length && $inBox.length){
-				$inBox.attr('aria-hidden',true);
-				$inBox.find(':focusable').attr('tabindex',-1);
-			}
-		});
-	},
-	dimmed:function(tar,txt){
-		var $inBox = $(tar).find('.section_box_in');
-		var $logoHtml = '<div class="ld_img" aria-hidden="true"></div>';
-		if(!!txt){
-			$logoHtml += '<div class="txt">'+txt+'</div>';
-		}else{
-			$logoHtml += '<div class="blind">데이터를 불러오는중입니다.</div>';
-		}
-		if($(tar).find(Loading.dimmedClass).length){
-			$(tar).find(Loading.dimmedClass+' .tl>div').html($logoHtml);
-		}else{
-			var $wrapTag = 'div';
-			if($(tar).is('ul') || $(tar).is('ol'))$wrapTag = 'li';
-			if($(tar).is('dl'))$wrapTag = 'dd';
-			var $html = '<'+$wrapTag+' class="'+Loading.dimmedClass.substring(1)+'">';
-				$html += '<div class="tl">';
-					$html += '<div>';
-					$html += $logoHtml;
-					$html += '</div>';
-				$html += '</div>';
-			$html += '</'+$wrapTag+'>';
-
-			$(tar).prepend($html);
-		}
-		if($inBox.length){
-			$inBox.attr('aria-hidden',true);
-			$inBox.find(':focusable').attr('tabindex',-1);
-		}
-	},
-	undimmed:function(tar){
-		var $inBox = $(tar).find('.section_box_in');
-		if($inBox.length){
-			$inBox.removeAttr('aria-hidden');
-			$inBox.find(':focusable').removeAttr('tabindex');
-		}
-		if($(tar).find(Loading.dimmedClass).length)$(tar).find(Loading.dimmedClass).remove();
-	}
-};
-
 //body scroll lock
 var Body = {
 	scrollTop :'',
 	lock: function(){
 		if(!$('html').hasClass('lock')){
 			Body.scrollTop = window.pageYOffset;
-			$('#wrap').css('top',-(Body.scrollTop));
+			$('#container').css('top',-(Body.scrollTop));
 			$('html').addClass('lock');
 		}
 	},
 	unlock: function(){
 		if($('html').hasClass('lock')){
 			$('html').removeClass('lock');
-			$('#wrap').removeAttr('style');
+			$('#container').removeAttr('style');
 			window.scrollTo(0, Body.scrollTop);
 			window.setTimeout(function (){
 				Body.scrollTop = '';
 			}, 0);
-		}
-	}
-};
-
-//PC 디바이스 체크
-var isPC = {
-	window: function(){
-		return navigator.userAgent.match(/windows/i) == null ? false : true;},
-	mac: function(){
-		return navigator.userAgent.match(/macintosh/i) == null ? false : true;},
-	chrome: function(){
-		return navigator.userAgent.match(/chrome/i) == null ? false : true;},
-	firefox: function(){
-		return navigator.userAgent.match(/firefox/i) == null ? false : true;},
-	opera: function(){
-		return navigator.userAgent.match(/opera|OPR/i) == null ? false : true;},
-	safari: function(){
-		return navigator.userAgent.match(/safari/i) == null ? false : true;},
-	edge: function(){
-		return navigator.userAgent.match(/edge/i) == null ? false : true;},
-	msie: function(){
-		return navigator.userAgent.match(/rv:11.0|msie/i) == null ? false : true;},
-	ie11: function(){
-		return navigator.userAgent.match(/rv:11.0/i) == null ? false : true;},
-	ie10: function(){
-		return navigator.userAgent.match(/msie 10.0/i) == null ? false : true;},
-	ie9: function(){
-		return navigator.userAgent.match(/msie 9.0/i) == null ? false : true;},
-	ie8: function(){
-		return navigator.userAgent.match(/msie 8.0/i) == null ? false : true;},
-	any: function(){
-		return (isPC.window()|| isPC.mac());},
-	check: function(){
-		if(isPC.any()){
-			if(isPC.window())$('html').addClass('window');
-			if(isPC.mac())$('html').addClass('mac');
-			if(isPC.msie())$('html').addClass('msie');
-			if(isPC.ie11())$('html').addClass('ie11');
-			if(isPC.ie10())$('html').addClass('ie10');
-			if(isPC.ie9())$('html').addClass('ie9');
-			if(isPC.ie8())$('html').addClass('ie8');
-			if(isPC.edge()){
-				$('html').addClass('edge');
-			}else if(isPC.opera()){
-				$('html').addClass('opera');
-			}else if(isPC.chrome()){
-				$('html').addClass('chrome');
-			}else if(isPC.safari()){
-				$('html').addClass('safari');
-			}else if(isPC.firefox()){
-				$('html').addClass('firefox');
-			}
 		}
 	}
 };
@@ -322,46 +135,9 @@ var isMobile = {
 	}
 };
 
-//앱인지 체크: isAppChk(),isAppChk('ios'),isAppChk('Android')
-var isAppChk = function(os){
-	if(typeof _isDevice != 'undefined'){
-		if(_isDevice == 'A'){
-			switch(os){
-				case 'ios':
-					if(isMobile.iOS()){
-						return true;
-					}else{
-						return false;
-					}
-					break;
-				case 'Android':
-					if(isMobile.Android()){
-						return true;
-					}else{
-						return false;
-					}
-					break;
-				default:
-					if(os == undefined){
-						return true;
-					}else{
-						console.log('isAppChk 함수 os 오류');
-						return false;
-					}
-					break;
-			}
-		}else{
-			return false;
-		}
-	}else{
-		return false;
-	}
-};
-
 //디바이스체크 실행
 var deviceCheck = function(){
 	isMobile.check();
-	isPC.check();
 	if(isMobile.any()){
 		var $pixelRatio = window.devicePixelRatio;
 		if(!!$pixelRatio) $('html').addClass('pixel_ratio_'+$pixelRatio);
@@ -372,21 +148,13 @@ var deviceCheck = function(){
 	//아이폰8 (스크린:375*667, 윈도우: 375*554)
 	var $iPhone8PlusH = 736,	//아이폰8+ 높이값 736(보다 크면 아이폰X 시리즈로 처리)
 		$screenH = window.screen.height,
-		$screenW = window.screen.width,
-		//$default = 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no';
-		$default = $('meta[name=viewport]').attr('content');
+		$screenW = window.screen.width;
 
 	var isIPhoneX = function(e){
 		$('html').addClass('iPhoneX');
-		$('meta[name=viewport]').attr('content',$default+',viewport-fit=cover');
 	};
 	var notIPhoneX = function(e){
 		$('html').removeClass('iPhoneX');
-		if(isMobile.Android()){
-			$('meta[name=viewport]').attr('content',$default+',target-densitydpi=medium-dpi');
-		}else{
-			$('meta[name=viewport]').attr('content',$default);
-		}
 	};
 
 	//아이폰X체크
@@ -409,218 +177,7 @@ var deviceCheck = function(){
 	}
 };
 
-//공통: 헤더, gnb, 레이아웃, 앱용플로팅버튼, 스킵네비, meta[og:image]
-var $isFixedBtn = false;
 var common = {
-	isApp:function(){
-	//앱일때만 'html'에 isApp 클래스추가
-	//_isDevice: A-앱,W-웹 (header.jsp 확인)
-		if(typeof _isDevice != 'undefined'){
-			if(_isDevice == 'A')$('html').addClass('isApp');
-		}else{
-			console.log('_isDevice 없음');
-		}
-	},
-	winLoad:function(){
-		//hr태그 토크백 제외
-		$('hr').each(function(){
-			$(this).attr('aria-hidden',true);
-		});
-
-		//버튼없는 헤더 쓸때
-		if($('.fake_header').length && $('#header').length){
-			$('#header').addClass("no_btn");
-			$('.fake_header').remove();
-		}
-	},
-	gnbSubOpenTxt:'하위메뉴 펼치기',
-	gnbSubCloseTxt:'하위메뉴 접기',
-	gnbBgClass:'.gnb_bg',
-	gnbBg:'<div class="gnb_bg" aria-hidden="true"></div>',
-	gnbOutCont:'#skipNavi,#header h1,.btn_back,#container,#floatingMenu,#floatingBar,#footer',
-	gnbSwipe:'',
-	gnb:function(){
-		if($('#gnb').length){
-			$('#gnb').attr('aria-hidden',true);
-			var $gnbSubContainer = '.gnb_sub .swipe-container';
-			if($($gnbSubContainer).length){
-				var $itemLength =$($gnbSubContainer).find('.swiper-slide').length;
-				common.gnbSwipe = new Swiper($gnbSubContainer,{
-					resizeReInit:true,
-					autoHeight:true,
-					pagination:{
-						el: '.gnb_pagination',
-						renderBullet:function(index, className) {
-							return '<button type="button" class="'+className+'">'+(index+1)+'번째 t서브메뉴 슬라이드</button>';
-						}
-					},
-					on:{
-						init:function(){
-							setTimeout(function(){
-								var $length = common.gnbSwipe.pagination.bullets.length;
-								swiperUI.focusAria($gnbSubContainer,common.gnbSwipe.snapIndex,$itemLength-$length);
-							},10);
-						},
-						resize:function(){
-							var $length = common.gnbSwipe.pagination.bullets.length;
-							swiperUI.focusAria($gnbSubContainer,common.gnbSwipe.snapIndex,$itemLength-$length);
-						},
-						transitionEnd:function(e){
-							if($('#gnb').hasClass('show')){
-								var $length = common.gnbSwipe.pagination.bullets.length;
-								swiperUI.focusAria($gnbSubContainer,common.gnbSwipe.snapIndex,$itemLength-$length);
-
-								var $activeLi = $('.gnb_dep1').find('li').eq(common.gnbSwipe.snapIndex);
-								$activeLi.addClass('open').find('a').attr('title',common.gnbSubOpenTxt);
-								$activeLi.siblings().removeClass('open').find('a').removeAttr('title');
-								scrollUI.center($activeLi);
-							}
-						}
-					}
-				});
-			}
-
-			$(document).on('click','.btn_gnb',function(e){
-				e.preventDefault();
-				if($('#gnb').hasClass('show')){
-					common.gnbClose();
-				}else{
-					common.gnbOpen();
-				}
-			});
-			$(document).on('click','.btn_gnb_close',function(e){
-				e.preventDefault();
-				common.gnbClose();
-			});
-
-			$(document).on('click','.gnb_dep1>ul>li>a',function(e){
-				e.preventDefault();
-				common.gnbSubOpen(this);
-			});
-			
-			$(document).on('click','.gnb_content a.in_sub',function(e){
-				e.preventDefault();
-				common.gnbSubOpen(this,true);
-			});
-
-			$('#gnb .in_sub').each(function(){
-				$(this).attr('title',common.gnbSubOpenTxt);
-			});
-		}
-	},
-	gnbOpen:function(){
-		Body.lock();
-		$('#gnb').show().attr('tabindex',0).focus();
-		$('#gnb').attr('aria-hidden',false);
-		$(common.gnbOutCont).attr('aria-hidden',true);
-		$('#gnb').addClass('show');
-		$('#gnb').before(common.gnbBg);
-		$(common.gnbBgClass).addClass('show');
-		Layer.focusMove('#gnb');
-		$('.btn_gnb').addClass('on');
-		$('.btn_gnb span').changeTxt('열기','닫기');
-
-		if($('.gnb_dep1').find('.active').length){
-			scrollUI.center($('.gnb_dep1').find('.active'));
-			$('.gnb_dep1').find('.active').addClass('open').find('a').attr('title','현재선택');
-		}else{
-			$('.gnb_dep1>ul>li').first().addClass('active open').find('a').attr('title','현재선택');
-		}
-
-		if($('.gnb_dep2').find('.active').length){
-			$('.gnb_dep2').find('.active').addClass('open').children('div').show().siblings('.in_sub').attr('title',common.gnbSubCloseTxt);
-		}
-
-		if(common.gnbSwipe != ''){
-			var $idx = $('.gnb_dep1>ul>li.active').index();
-			common.gnbSwipe.update();
-			$('.gnb_dep1>ul>li.active>a').click();
-		}
-
-		//모바일 접근성보완: 모바일일때 마지막에 닫기 버튼 추가
-		var $lastCloseBtn = '<a href="#" class="btn_gnb_close last_focus" role="button"><i class="blind">전체메뉴 닫기</i></a>';
-		if(isMobile.any() && !$('#gnb').find('.btn_gnb_close.last_focus').length)$('#gnb').append($lastCloseBtn);
-	},
-	gnbClose:function(){
-		Body.unlock();
-		$('.btn_gnb').focus();
-		$('#gnb').attr('aria-hidden',true);
-		$(common.gnbOutCont).removeAttr('aria-hidden');
-		$('#gnb').removeClass('show');
-		$(common.gnbBgClass).removeClass('show');
-		$('#gnb').removeAttr('tabindex');
-		$('.btn_gnb').removeClass('on');
-		$('.btn_gnb span').changeTxt('닫기','열기');
-
-		if(common.gnbSwipe != ''){
-			common.gnbSwipe.slideTo(0);
-		}
-		
-		setTimeout(function(){
-			$(common.gnbBgClass).remove();
-			$('#gnb').removeAttr('style');
-			common.gnbDepthReset();
-			if($('#gnb').find('.btn_gnb_close.last_focus').length)$('#gnb').find('.btn_gnb_close.last_focus').remove();
-		},610);
-	},
-	gnbDepthReset:function(){
-		$('#gnb').find('.open').removeClass('open');
-		$('#gnb').find('.gnb_dep2,.gnb_dep3').removeAttr('style');
-		$('#gnb .in_sub').each(function(){
-			$(this).attr('title',common.gnbSubCloseTxt);
-		});
-	},
-	gnbSubOpenIng:false,
-	gnbSubOpen:function(target,isToggle){
-		var $slideSpeed = 300;
-		//클릭시 메뉴 활성화
-		if(isToggle){
-			var $closest = $(target).closest('li');
-			//뎁스2
-			if(common.gnbSubOpenIng == false){
-				common.gnbSubOpenIng = true;
-				if($closest.hasClass('open')){
-					$closest.removeClass('open').find('.in_sub').attr('title',common.gnbSubOpenTxt);
-					$(target).next().stop(true,false).slideUp($slideSpeed,function(){
-						common.gnbSubOpenIng = false;
-						common.gnbSwipe.update();
-					});
-				}else{
-					$(target).closest('.gnb_dep2').siblings().find('.open').removeClass('open').find('a').removeAttr('title').next().removeAttr('style');
-					$closest.siblings().removeClass('open').find('.open').removeClass('open').find('a').removeAttr('title').next().removeAttr('style');
-					$closest.siblings().children('div').stop(true,false).slideUp($slideSpeed,function(){
-						$(this).removeAttr('style');
-					}).siblings('.in_sub').attr('title',common.gnbSubOpenTxt);
-					$closest.addClass('open').find('.in_sub').attr('title',common.gnbSubCloseTxt);
-					$(target).next().stop(true,false).slideDown($slideSpeed,function(){
-						common.gnbSubOpenIng = false;
-						common.gnbSwipe.update();
-					});
-				}
-			}
-		}else{
-			//1뎁스
-			var $li = $(target).closest('li'),
-				$liIdx = $li.index();
-			common.gnbSwipe.slideTo($liIdx,$slideSpeed);
-		}
-	},
-	title:function(str){
-		if(str != undefined && str != ''){
-			var $title = document.title;
-			if($title.indexOf(' | ')<0)document.title = str+' | '+$title;
-			if($('#header').length){
-				$('#header h1').html(str);
-			}
-		}
-		/*else{
-			str = '<a href="#">농협카드</a>';
-			if($('#header').length){
-				$('#header .btn_back').remove();
-				$('#header h1').addClass('logo').html(str);
-			}
-		}*/
-	},
 	fixed:function(target){
 		//고정(fixed)
 		var $target = $(target);
@@ -662,84 +219,7 @@ var common = {
 			});
 		}
 	},
-	header: function(){
-		//버튼없는 헤더 쓸때(버튼 없이 타이틀만 있는 헤더)
-		if($('.fake_header').length && $('#header').length){
-			var $h1Tit = $('#header h1').text(),
-				$h1Tit2 = $('.fake_header h1').text();
-			if($h1Tit != $h1Tit2)$('.fake_header h1').text($h1Tit);
-		}
-
-		if($('#container').hasClass('full'))$('#header').addClass('ty2');
-	},
-	footer: function(){
-		/* floating bar */
-		var $naviBar = $('#floatingBar');
-		if(isAppChk()){
-			if(!$naviBar.hasClass('hide') && !$('.step_swipe').length){
-				if($naviBar.length)$('#footer').addClass('add_floating_navi');
-				if($('.floating_btn').length){
-					$('.floating_btn').each(function(){
-						var $this = $(this);
-						$naviBar.find('.ft_wrap').append($this);
-					});
-				}
-			}
-
-			var $fileName = location.pathname.split('/').pop().split('.').shift();
-			$naviBar.find('.icon_btn li').each(function(){
-				var $this = $(this),
-					$activeLink = $this.data('active-link');
-				if($fileName.indexOf($activeLink)>=0)$(this).addClass('active').find('a').attr('title','현재선택');
-			});
-
-			$naviBar.find('.icon_btn .btn').click(function(){
-				var $href = $(this).attr('href');
-				var $location = location.pathname;
-				if($href == $location)return false;
-			});
-		}
-
-		/* floating Menu */
-		var $menu = $('#floatingMenu');
-		$menu.find('.btn_menu').click(function(e){
-			e.preventDefault();
-			if($menu.hasClass('show')){
-				Body.unlock();
-				$menu.removeClass('show');
-			}else{
-				Body.lock();
-				$menu.addClass('show');
-			}
-		});
-
-		/* fixed Button Check */
-		var $content = $('#contents'),
-			$footer = $('#footer'),
-			$floatingBtn = $('.floating_btn'),
-			$fixedBtn = '';
-		
-		if($content.find('.btn_wrap.bottom_fixed').not('.pop_btn').length)$fixedBtn = $content.find('.btn_wrap.bottom_fixed').not('.pop_btn');
-
-		if($fixedBtn != '' && $fixedBtn.is(':visible')){
-			$fixedBtnH = $fixedBtn.children().height();
-			$footer.addClass('add_fixed_btn');
-			$('#floatingBar').addClass('hide');
-			if($floatingBtn.length)$floatingBtn.addClass('is_fixed_btn');
-		}
-	},
-	skipNavi: function(){
-	//스킵네비 삽입
-		var $naviHtml = '<div id="skipNavi"><a href="#contents" class="no_button">본문내용 바로가기</a> </div>';
-		if($('#contents').length && !$('#skipNavi').length)$('body').prepend($naviHtml);
-	},
 	init:function(){
-		common.gnb();
-		common.header();
-		common.footer();
-		common.skipNavi();
-
-		common.fixed('#header');
 		if($('.tab_wrap.add_fixed').length)common.fixed('.tab_wrap.add_fixed');
 	}
 };
@@ -755,7 +235,7 @@ var Layer = {
 	headClass:'pop_head',
 	contClass:'pop_cont',
 	innerClass:'section',
-	etcCont:'#skipNavi,#header,#container,#floatingMenu,#floatingBar,#footer',
+	etcCont:'#container',
 	beforeCont:[],
 	content:'',
 	overlapChk: function(){
@@ -1096,17 +576,6 @@ var Layer = {
 			$(tar).attr('id',$id);
 		}
 
-		//열릴때 플루팅 버튼
-		// if($('.floating_btn').is(':visible')){
-		// 	$('.floating_btn').hide();
-		// 	if($('.floating_btn').hasClass('is_fixed_btn'))$(tar).addClass('is_fixed_btn');
-		// }
-		if(isAppChk() && !$('#floatingBar').hasClass('off')){
-			$(tar).addClass('is_floating');
-		}else{
-			$(tar).removeClass('is_floating');
-		}
-
 		//fixed버튼 있을때 빈공간삽입
 		if($(tar).find('.pop_cont').next('.btn_wrap.bottom_fixed').length){
 			$(tar).find('.pop_cont').addClass('after_btn');
@@ -1228,11 +697,6 @@ var Layer = {
 			setTimeout(function(){
 				callback();
 			},$closeDelay);
-		}
-
-		//닫힐때 플루팅 버튼
-		if(!$('.floating_btn').is(':visible')){
-			$('.floating_btn').removeAttr('style');
 		}
 	},
 	position:function(tar){
@@ -1391,84 +855,7 @@ var Layer = {
 
 		Layer.keyEvt();
 		Layer.selectUI();
-
-		//윈도우팝업
-		if($('.pop_wrap.win').length){
-			Layer.position('.pop_wrap.win');
-		}
-
-		//윈도우팝업 열기버튼
-		$(document).on('click','.btn_winpop',function(e){
-			e.preventDefault();
-			var $href = $(this).attr('href'),
-				$hrefFile = $href.split('/').pop().split('.').shift(),
-				$popWidth = $(this).data('pop-width'),
-				$popHeight= $(this).data('pop-height'),
-				$popLeft = $(this).data('pop-left'),
-				$popTop = $(this).data('pop-top');
-
-			if(isMobile.any()){
-				window.open($href,$hrefFile);
-			}else{
-				if(!$popWidth)$popWidth = 400;
-				if(!$popHeight)$popHeight = 500;
-				if($(this).hasClass('screen')){
-					//스크린기준 센터
-					if($popHeight >= screen.availHeight){
-						$popHeight = Math.min(screen.availHeight,$popHeight);
-					}
-					if(!$popTop)$popTop=screenCenter.top($popHeight);
-					if(!$popLeft)$popLeft=screenCenter.left($popWidth);
-				}else{
-					//브라우저기준 센터
-					if($popHeight >= window.innerHeight){
-						$popHeight = Math.min(window.innerHeight,$popHeight);
-					}
-					if(!$popTop)$popTop = winPopCenter.top($popHeight);
-					if(!$popLeft)$popLeft = winPopCenter.left($popWidth);
-				}
-				window.open($href,$hrefFile,"width="+$popWidth+",height="+$popHeight+", left="+$popLeft+", top=" +$popTop+", scrollbars=yes, menubars=no, location=no, toolbar=no, status=no, resizable=no").focus();
-			}
-		});
 	}
-};
-var winPopCenter = {
-	top: function(num){
-		var $num = Math.min(window.outerHeight,parseInt(num)),
-			result = window.screenY + (window.outerHeight/2) - ($num/2);
-		result = result-34; //브라운제상단 영역(주소창 등등)
-		return result;
-	},
-	left: function(num){
-		var $num = Math.min(window.outerWidth,parseInt(num)),
-			result = window.screenX + (window.outerWidth/2) - ($num/2);
-		//console.log(window.screenX,window.outerWidth,$num,num);
-		return result;
-	}
-};
-
-//토스트팝업
-var toastBox = function(txt){
-	var $delay = 3000,
-		$speed = 300,
-		$className = '.toast_box';
-
-	var $boxHtml = '<div class="'+$className.substring(1)+'">';
-		$boxHtml += '<div class="txt">'+txt+'</div>';
-		$boxHtml += '</div>';
-	$('#contents').before($boxHtml);
-
-	/*var $toast = $($className).last(),
-		$height = $toast.outerHeight();
-	$toast.css({'height':0});
-
-	setTimeout(function(){
-		var $headH = $('#header').outerHeight();
-		if($headH > 50)$toast.css({'top':$headH});
-		$toast.animate({'height':$height},$speed).delay($delay).animate({'height':0},$speed);
-	},100);*/
-	var $toast = $($className).last();
-	$toast.addRemoveClass('on', 0, $delay);
 };
 
 //버튼 관련
@@ -1484,7 +871,7 @@ var buttonUI ={
 					$(this).attr({'href':'#'});
 					if($role == undefined)$(this).attr('role','button');
 				}else{
-					if($href.startsWith('#') && $role == undefined)$(this).attr('role','button');
+					if($href == '#' && $role == undefined)$(this).attr('role','button');
 				}
 			}
 		});
@@ -1495,21 +882,11 @@ var buttonUI ={
 			if($type == undefined)$(this).attr('type','button');
 		});
 	},
-	default: function(){
-		//href가 #시작할때 a태그 클릭 시 기본속성 죽이기
-		$(document).on ('click','a',function(e){
-			var $href = $(this).attr('href');
-			if(!$(this).hasClass('no_button')){ //기본속성 살리는 클래스(스킵네비 등)
-				if($href.startsWith('#')){
-					e.preventDefault();
-				}
-			}
-		});
-	},
 	effect: function(){
 		//버튼 클릭 효과
 		var btnInEfList = 'a.button, button.button';
 		$(document).on('click', btnInEfList,function(e){
+			e.preventDefault();
 			var $btnEl = $(this),
 				$delay = 650;
 
@@ -1528,49 +905,6 @@ var buttonUI ={
 					$btnIn.remove();
 					next();
 				});
-			}
-		});
-	},
-	top: function(){
-	//top 버튼ㄴ
-		var settings ={
-			button: '#btnTop',
-			text: '컨텐츠 상단으로 이동',
-			min: 100,
-			onClass: 'on',
-			hoverClass: 'hover',
-			scrollSpeed : 300
-		};
-		var btnHtml = '<div class="floating_btn btn_top"><a href="#" id="'+settings.button.substring(1)+'" class="btn" title="'+settings.text+'" role="button"><span class="blind">'+settings.text+'</span></a></div>';
-		if(!$(settings.button).length && $('#footer').length){
-			if(isAppChk() && $('#floatingBar').length){
-				if($('#floatingBar').hasClass('hide')){
-					$('#footer').append(btnHtml);
-				}else{
-					$('#floatingBar .ft_wrap').append(btnHtml);
-				}
-			}else{
-				$('#footer').append(btnHtml);
-			}
-			if($isFixedBtn)$(settings.button).parent().addClass('is_fixed_btn');
-		}
-		$(document).on('click',settings.button,function(e){
-			e.preventDefault();
-			$('html, body').animate({scrollTop:0},settings.scrollSpeed);
-			$('#wrap').find(':focusable').first().focus();
-		}).on('mouseenter',function(){
-			$(settings.button).addClass(settings.hoverclass);
-		}).on('mouseleave',function(){
-			$(settings.button).removeClass(settings.hoverClass);
-		});
-		$(window).on('scroll resize',function(){
-			var position = $(window).scrollTop();
-			if (position > settings.min){
-				$(settings.button).parent().addClass(settings.onClass);
-				$('.floating_btn').not('.btn_top').addClass('top_on');
-			}else{
-				$(settings.button).parent().removeClass(settings.onClass);
-				$('.floating_btn').not('.btn_top').removeClass('top_on');
 			}
 		});
 	},
@@ -1611,7 +945,7 @@ var buttonUI ={
 					$(window).scrollTop($winScrollTop);
 				}
 				if($this.closest('.fixed').length){
-					var $scrollTop = $this.closest('.fixed').offset().top - $('#header').outerHeight();
+					var $scrollTop = $this.closest('.fixed').offset().top;
 					scrollUI.move($scrollTop);
 				}
 
@@ -1623,23 +957,6 @@ var buttonUI ={
 				}
 				$this.attr('title',$onText).parent().addClass('active').siblings().removeClass('active').find('a').removeAttr('title');
 				$this.attr('aria-selected',true).closest('li').siblings().find('[role=tab]').attr('aria-selected',false);
-
-				//fixedBtn
-				if($($href).find('.btn_wrap.bottom_fixed').length){
-					$('#footer').addClass('add_fixed_btn');
-					$('#floatingBar').addClass('hide');
-				}else if(!$('.btn_wrap.bottom_fixed:visible').length){
-					$('#footer').removeClass('add_fixed_btn');
-					$('#floatingBar').removeClass('hide');
-				}
-
-				//scrollItem
-				if($($target).find('.animated').length){
-					setTimeout(function(){
-						$($target).find('.animated').addClass('paused');
-						$(window).scroll();
-					},100);
-				}
 			}else{
 				console.error('대상 지정 오류! href값에 해당 id값을 넣어 주세요~');
 			}
@@ -1712,18 +1029,6 @@ var buttonUI ={
 				if($(this).not('.ui-tab').length && $(this).closest('.tab_wrap').length){
 					$(this).find('.active > a').attr('title',$onText);
 				}
-			});
-		}
-
-		if($('.tabmenu2').length){
-			$(document).on('click','.tabmenu2.ui-tab a',function(e){
-				e.preventDefault();
-				scrollUI.center($(this).parent());
-			});
-
-			$('.tabmenu2').each(function(){
-				var $active = $(this).find('.active');
-				scrollUI.center($active);
 			});
 		}
 
@@ -1843,10 +1148,8 @@ var buttonUI ={
 		});
 	},
 	init: function(){
-		buttonUI.default();
 		buttonUI.effect();
 		buttonUI.tab();
-		if(!$('.main_content').length)buttonUI.top(); //메인에는 탑버튼 미사용
 	}
 };
 
@@ -1920,125 +1223,6 @@ var tooltip = {
 	}
 };
 
-//공유하기
-//카카오톡 공유하기 -  https://developers.kakao.com/ 에서 키값 발급 필요
-//<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-var share = {
-	kakaoKey:'5ea7c35c641087250a63564a3d2842d1',
-	kakaoInit: false,
-	copy:function($link){
-		if($link == '' || $link == undefined)$link = location.href;
-		if(isPC.ie8()||isPC.ie9()){	//구형 ie
-			window.clipboardData.setData("Text", $link);
-			if(window.clipboardData.getData("Text") == ''){
-				Layer.alert('복사되지않았습니다.<br>클립보드를 허용해주세요.');
-			}else{
-				Layer.alert('주소가 복사되었습니다.<br>원하는곳에 붙여넣으세요.');
-			}
-		}else{
-			var t = $('<div class="blind"><textarea class="clipbordTxt blind"></textarea></div>');
-			$(event.target).after(t);
-			$('.clipbordTxt').val($link);
-			$('.clipbordTxt').select();
-			document.execCommand('Copy');
-			$('.clipbordTxt').parent().remove();
-			Layer.alert('주소가 복사되었습니다.<br>원하는곳에 붙여넣으세요.');
-		}
-	},
-	sns:function($snsType,$title,$image,$description,$link){
-		if($title == '' || $title == undefined)$title = $('meta[property="og:title"]').attr("content");
-		if($image == '' || $image == undefined)$image = $('meta[property="og:image"]').attr("content");
-		if($description == '' || $description == undefined)$description = $('meta[property="og:description"]').attr("content");
-		if($link == '' || $link == undefined)$link = location.href;
-		var $protocol = location.protocol,
-			$width = 500,
-			$href = '',
-			$url = encodeURIComponent($link);
-			
-		switch ($snsType) {
-			case 'facebook':
-				$href = '//www.facebook.com/sharer/sharer.php?u=' + $url;
-				break;
-			case 'twitter':
-				$href = '//twitter.com/intent/tweet?url=' + $url + ' text=' + $title;
-				break;
-			case 'naver_blog':
-				$href = '//blog.naver.com/openapi/share?url=' + $url + ' title=' + $title;
-				break;
-			case 'naver_band':
-				$href = '//band.us/plugin/share?body=' + encodeURIComponent($title +'\n'+$description +'\n')+ $url;
-				break;
-			case 'google_plus':
-				$href = '//plus.google.com/share?url=' + $url;
-				$width = 400;
-				break;
-			case 'pinterest':
-				$href = '//pinterest.com/pin/create/button/?url=' + $url + ' description=' + $title + ' media=' + $image;
-				break;
-			case 'kakao_story':
-				$href = '//story.kakao.com/share?url=' + $url;
-				break;
-			case 'kakao_talk':
-				var kakaoSend = function(){
-					Kakao.Link.sendDefault({
-						objectType: 'feed',
-						content: {
-							title: $title,
-							imageUrl: $image,
-							description: $description,
-							link: {
-								mobileWebUrl: $href,
-								webUrl: $href
-							}
-						},
-						buttons: [{
-							title: '웹으로 보기',
-							link: {
-								mobileWebUrl: $href,
-								webUrl: $href
-							}
-						}]
-					});
-				};
-
-				if(share.kakaoKey != ''){
-					if(share.kakaoInit == false){
-						share.kakaoInit = true;
-						loadScript('//developers.kakao.com/sdk/js/kakao.min.js',function(){
-							Kakao.init(share.kakaoKey);
-							kakaoSend();
-						});
-					}else{
-						kakaoSend();
-					}
-				}else{
-					Layer.alert('카카오톡 공유하기 API의 key값를 등록해주세요.');
-				}
-				break;
-		}
-		//'kakao_talk' !== $snsType && window.open($protocol + $href, $snsType + 'sns_share', 'scrollbars=1,width=' + $width + ',height=500,menubar=0,resizable=0');
-		if($snsType !== 'kakao_talk')window.open($protocol + $href, $snsType + 'sns_share', 'scrollbars=1,width=' + $width + ',height=500,menubar=0,resizable=0');
-	}
-};
-var loadScript = function(url, callback){
-	var script = document.createElement("script");
-	script.type = "text/javascript";
-	if(script.readyState){  //IE
-		script.onreadystatechange = function(){
-			if (script.readyState == "loaded" || script.readyState == "complete"){
-				script.onreadystatechange = null;
-				callback();
-			}
-		};
-	} else {  //Others
-		script.onload = function(){
-			callback();
-		};
-	}
-	script.src = url;
-	document.getElementsByTagName("head")[0].appendChild(script);
-};
-
 //스크롤 관련
 var scrollUI = {
 	inCheck:function(target){
@@ -2089,71 +1273,6 @@ var scrollUI = {
 
 			if($prtW < $prtSclW)$parent.animate({'scrollLeft':'+='+$sclL},speed);
 		}
-	},
-	hidden: function(){
-		var $window = $(window),
-			$position = $window.scrollTop(),
-			$floatingBar = $('#floatingBar'),
-			$isFloatingNav = false,
-			$sclHidden = $('.btn_scl_hidden'),
-			$sclHidden2 = $('.scl_hidden');
-
-		if(isAppChk() && !$floatingBar.hasClass('hide'))$isFloatingNav = true;
-
-		$window.on('scroll', function(){
-			var $scrollTop = $(this).scrollTop(),
-				$wrapH = $('#wrap').height(),
-				$end = $wrapH - $(window).height() - 10;
-			if($scrollTop >= $position){										//아래로 스크롤하면 숨김
-				if($scrollTop >= $end){											//아래로 스크롤해도 마지막에 도달하면 보여줌
-					//if($isFloatingNav)$floatingBar.removeClass('off');		//접근성 문제로 항상 보이게...
-					//$sclHidden.removeClass('off');							//접근성 문제로 항상 보이게...
-					$sclHidden2.removeClass('off');
-				}else{
-					//if($isFloatingNav)$floatingBar.addClass('off');
-					//$sclHidden.addClass('off');
-					if($scrollTop > 50)$sclHidden2.addClass('off');
-				}
-			}else{							//위로 스크롤하면 보여줌
-				if(!$('html').hasClass('lock')){
-					if(($position-$scrollTop) > 10){
-						//if($isFloatingNav)$floatingBar.removeClass('off');	//접근성 문제로 항상 보이게...
-						//$sclHidden.removeClass('off');						//접근성 문제로 항상 보이게...
-					}
-					if($scrollTop <= 50){
-						$sclHidden2.removeClass('off');
-					}else{
-						$sclHidden2.addClass('off');
-					}
-				}
-			}
-		});
-		$window.scrollEnd(function(){
-			var $scrollTop = $(this).scrollTop();
-			$position = $scrollTop;
-		},300);
-		$sclHidden.find('a').on('focusin', function(e){
-			$sclHidden.removeClass('off');
-		});
-	},
-	loading:function(){
-		$(window).scroll(function(){
-			$('.loading_area').each(function(){
-				var $this = $(this),
-					$href = $this.data('href');
-				if(scrollUI.inCheck(this)){
-					$this.load($href,function(res,sta,xhr){
-						if(sta == "success"){
-							$this.children().unwrap();
-						}
-					});
-				}
-			});
-		});
-	},
-	init: function(){
-		scrollUI.hidden();
-		scrollUI.loading();
 	}
 };
 
@@ -2209,29 +1328,6 @@ var formUI = {
 			if($this.is('select') && $this.closest('.select').length)$this.closest('.select').addClass('focus');
 			if($this.hasClass('btn_select') && $this.closest('.select').length)$this.closest('.select').addClass('focus');
 			if($this.is('textarea') && $this.closest('.textarea').length)$this.closest('.textarea').addClass('focus');
-
-			//포커스 요소 가려지면 스크롤
-			/*
-			if(isAppChk('Android')){ //안드로이드앱 체크
-				setTimeout(function(){
-					var $top = $this.offsetParent().offset().top,
-						$height = $this.outerHeight(),
-						$wrap = $(window),
-						$wrapH = $wrap.height(),
-						$scrollTop = $wrap.scrollTop(),
-						$fixedH = 60;
-					if($this.closest('.pop_cont').length){
-						$fixedH = 110;
-						$wrap = $this.closest('.pop_cont');
-						$scrollTop = $wrap.scrollTop();
-						$top = $top+$scrollTop;
-					}
-					var $gap = ($top+$height-$scrollTop)-($wrapH-$fixedH);
-					if($gap > 0){
-						$wrap.scrollTop($scrollTop+$gap+20);
-					}
-				},500);
-			}*/
 		});
 		$(document).on('focusout',$inpEls,function(e){
 			var $this = $(this);
@@ -2261,7 +1357,6 @@ var formUI = {
 					var $forLbl = $('label[for="'+$selId+'"]');
 					if($forLbl.length){
 						$forLbl.addClass('ui-select-lbl').attr('title',$btnTitle);
-						//$forLbl.replaceWith('<a href="#'+$selId+'" class="'+$forLbl.attr('class')+' ui-select-lbl" title="'+$btnTitle+'">'+$forLbl.html()+'</a>');
 					}
 
 					$sel.change(function(){
@@ -2270,7 +1365,6 @@ var formUI = {
 						if(($title == '카드선택' || $title == '카드 선택') && $selectTxt.length > 20){
 							$selectTxt = $selectTxt.substring(20,$selectTxt.lastIndexOf('(')) +'<span class="sub">'+ $selectTxt.substring(0,19) +'</span>';
 						}
-						//console.log($selectTxt)
 						$this.find('.btn_select .val').html($selectTxt);
 						if($val == ''){
 							$this.find('.btn_select').addClass('off');
@@ -2352,16 +1446,6 @@ var formUI = {
 		$(document).on('click','.inp_del',function(){
 			var $inp = $(this).prev();
 			$inp.val('').change().focus();
-			//$(this).remove();
-		});
-	},
-	removeError:function(){
-		//error 클래스 삭제
-		$(document).on('change','.form_item input, .form_item select, .form_item textarea',function(){
-			var $closest = $(this).closest('.form_item');
-			if($closest.hasClass('error')){
-				$closest.removeClass('error');
-			}
 		});
 	},
 	search:function(){
@@ -2810,7 +1894,6 @@ var formUI = {
 		formUI.select();
 		formUI.input();
 		formUI.delBtn();
-		//formUI.removeError();
 		formUI.search();
 		formUI.agree();
 		formUI.etc();
@@ -3270,63 +2353,6 @@ var sclCalendar = {
 	}
 };
 
-//리스트 관련 UI
-var listUI = {
-	winLoad:function(){
-		//토글실행
-		accordion.list('.ui-accordion','.tit a','.panel');
-		accordion.btn('.ui-toggle-btn');
-
-		//테이블 스크롤 가이드 실행
-		if($('.tbl_scroll').length){
-			tblUI.guideScl('.tbl_scroll');
-			tblUI.guide('.tbl_scroll');
-		}
-
-		//테이블 rowspan
-		if($('table th[rowspan]').length){
-			$('table th[rowspan]').each(function(){
-				var $this = $(this),
-					$idx = $this.index(),
-					$trIdx = ($this.parent().index()+1),
-					$tbody = $this.parent().parent(),
-					$rowspan = parseInt($this.attr('rowspan'));
-					for(var i = $trIdx;i < ($trIdx+$rowspan-1);i++){
-						$tbody.children().eq(i).children().eq($idx).addClass('l_line');
-					}
-			});
-		}
-	},
-	allChk:function(){
-		//전체선택
-		$('.all_chk').change(function(){
-			var $closest = $(this).closest('[class*=tit_h]').next(),
-				$chk = $closest.find('.item_chk');
-			if($(this).is(':checked') == true){
-				$(this).siblings('label').changeTxt('선택','해제');
-				$chk.prop('checked',true).change();
-			}else{
-				$(this).siblings('label').changeTxt('해제','선택');
-				$chk.prop('checked',false).change();
-			}
-		});
-		$('.item_chk').change(function(){
-			var $closest = $(this).closest('.product_list');
-			if($(this).closest('.chk_wrap').length)$closest = $(this).closest('.chk_wrap');
-			var $allchk = $closest.prev().find('.all_chk');
-				checkBoxLength = $closest.find('.item_chk').length;
-				checkedLength = $closest.find('.item_chk:checked').length;
-			if(checkBoxLength == checkedLength){
-				$allchk.prop('checked',true).siblings('label').changeTxt('선택','해제');
-			}else{
-				$allchk.prop('checked',false).siblings('label').changeTxt('해제','선택');
-			}
-		});
-	},
-	init:function(){
-		listUI.allChk();
-	}
-};
 //아코디언 함수
 var accordion = {
 	list:function(list,btn,panel,addClass,speed){
@@ -3591,7 +2617,6 @@ var swiperUI = {
 									}else{
 										$activeClass = '.swiper-slide-active';
 									}
-									if($this.closest('.section_box_in').length && $this.closest('.section_box_in').prev('.loading_dimmed').length)$activeClass = '';
 									var $length = $swiper.pagination.bullets.length;
 									swiperUI.focusAria($this,$swiper.snapIndex,$itemLength-$length);
 								},
@@ -3687,586 +2712,7 @@ var swiperUI = {
 	}
 };
 
-var materialUI = {
-	carousel:function(element){
-		if($(element).length){
-			$(element).each(function(i){
-				var $this = $(this),
-					$class= 'ui-carousel-'+i,
-					isFull = false;
-				if($this.hasClass('full')){
-					isFull = true;
-					$this.addClass('carousel-slider');
-					$this.css('height',$this.children().first().outerHeight());
-				}
-				$this.addClass($class);
-				$this.carousel({
-					fullWidth: isFull,
-					indicators: true,
-					onCycleTo:function(e){
-						$(e).attr('ariat-hidden',false).removeAttr('tabindex').find(':focusable').removeAttr('tabindex');
-						$(e).siblings('.carousel-item').attr({
-							'ariat-hidden':true,
-							'tabindex':'-1'
-						}).find(':focusable').attr({
-							'tabindex':'-1'
-						});
-						if($(e).closest('.mt_carousel').hasClass('full')){
-							setTimeout(function(){
-								$(e).closest('.mt_carousel').css('height',$(e).outerHeight()+22);
-							},50);
-						}
-					}
-				});
-			});
-		}
-	},
-	datepicker:function(element){
-		if($(element).length){
-			$(element).mtDatepicker({
-				//autoClose: true,
-				showMonthAfterYear: true,
-				showDaysInNextAndPreviousMonths: true,
-				format: 'yyyy.mm.dd'
-			});
-		}
-	},
-	timepicker:function(element){
-		if($(element).length){
-			$(element).timepicker({
-				//autoClose: true,
-				twelveHour:false
-			});
-		}
-	},
-	etc:function(){
-		if($('.scrollspy').length){
-			$('.scrollspy').scrollSpy({
-				scrollOffset:1
-			});
-		}
-		if($('.materialboxed').length)$('.materialboxed').materialbox();
-		if($('.parallax').length)$('.parallax').parallax();
-		if($('.mt_slider').length)$('.mt_slider').mtSlider();
-	},
-	init:function(){
-		materialUI.carousel('.mt_carousel');
-		materialUI.datepicker('.mt_datepicker');
-		materialUI.timepicker('.mt_timeicker');
-		materialUI.etc();
-	}
-};
-//오늘하루그만보기 팝업
-var todayPop ={
-	Arry : [],
-	Name : 'todayPopChk',
-	Path : location.pathname.split('/').pop().split('.').shift(),
-	open : function(target,isRemove){
-		var $target=$(target),
-			$targetId=$target.attr('id'),
-			$chkwrap=$target.find('.today_chk'),
-			$chekbox=$chkwrap.find('input'),
-			//$key=todayPop.Name+'-'+todayPop.Path+'-'+$targetId,
-			$key=todayPop.Name+'-'+$targetId,
-			$saveDate=parseInt(localStorage.getItem($key));
-
-		if(isRemove == null)isRemove = true;
-		todayPop.Arry.push($targetId);
-		$chekbox.data('key',$key).attr('id',$targetId+'_chk').siblings('label').attr('for',$targetId+'_chk');
-
-		if($nowDateDay <= $saveDate){
-			if(isRemove){
-				$target.remove();
-			}else{
-				$chkwrap.remove();
-			}
-		}else{
-			Layer.open($target);
-			if(!!$saveDate)localStorage.removeItem($key);
-		}
-
-		//닫기
-		$(target).on('click','.ui-pop-close',function(e){
-			todayPop.close(target,isRemove);
-		});
-	},
-	close: function(target,isRemove){
-		var $target=$(target),
-			$chkwrap=$target.find('.today_chk'),
-			$chekbox=$chkwrap.find('input'),
-			$key = $chekbox.data('key'),
-			$today = new Date(),
-			$year=$today.getFullYear(),
-			$month=$today.getMonth()+1,
-			$day=$today.getDay();
-		if(isRemove == null)isRemove = true;
-		if((''+$month).length==1)$month="0"+$month;
-		var $lastDay = (new Date($year,$month,0).getDate());
-		if($chekbox.prop('checked')){
-			var _val=$chekbox.val();
-			switch(_val){
-				case 'day':
-					localStorage.setItem($key,$nowDateDay);
-				break;
-				case 'week':
-					localStorage.setItem($key,$afterDateDay(8-$day));
-				break;
-				case 'month':
-					localstorage.setItem($key,''+$year+$month+$lastDay) ;
-				break;
-				case 'naver':
-					localStorage.setItem($key,'99999999');
-				break;
-				default:
-					if(parseInt(_val)>0){
-						localstorage.setItem($key,$afterDateDay(_val));
-					}
-				break;
-			}
-
-			setTimeout(function(){
-				if(isRemove){
-					$target.remove();
-				}else{
-					$chkwrap.remove();
-				}
-			},Layer.speed+Layer.delay+10);
-		}
-		setTimeout(function(){
-			if($(target).hasClass('show'))Layer.close(target);
-		},10);
-	},
-	init : function(){
-		$('.today.popup').each(function(i){
-			todayPop.open(this);
-		});
-	}
-};
-
-//이미지 미리로딩
-var preLoadingImg = function(imgarry){
-	var $pathname = location.pathname.split('/')[1],
-		isPreLoading = sessionStorage.getItem('isPreLoading'),
-		$class = 'pre_loading';
-	if(isPreLoading != 'true'){
-		console.log('preLoadingImg');
-		var $html = '<div class="'+$class+'">';
-		for(var i=0; i<imgarry.length; i++){
-			var $url = imgarry[i];
-			if($pathname == 'MDB'){
-				$url = $url.replace('moweb','MDB');
-			}
-			$html += '<div style="background-image:url('+$url+');"></div>';
-		}
-		$html += '</div>';
-		sessionStorage.setItem('isPreLoading',true);
-		$('body').append($html);
-	}
-};
-
-//차트
-var chartUI = function(target,speed){
-	var $tar = $(target);
-	$tar.each(function(){
-		var $target = $(this),
-			$speed = speed,
-			$type = $target.data('type'),
-			$bar = $target.find('.bar'),
-			$total = $target.find('.total'),
-			$totalNum = onlyNumber($total.first().text()),
-			$mark = $target.find('.mark'),
-			$markNum = onlyNumber($mark.first().text()),
-			$perc = Math.min(100,Math.floor(($markNum/$totalNum)*100)),
-			isAnimation = true,
-			$barTotal;
-
-		$target.data('first',true);
-		$(window).scroll(function(){
-			if(scrollUI.inCheck($target) && $target.data('first') == true){
-				$target.data('first',false);
-				switch($type){
-					case 'donut':
-						//도넛(반쪽) 차트
-						var $barIn = $bar.find('i'),
-							$remain = $target.find('.remain'),
-							$remainNum = onlyNumber($remain.text()),
-							$bg = $target.find('.bg>div');
-						if(!$bg.find('i').length)$bg.append('<i></i>');
-						$({p:0}).stop(true,false).animate({p:$perc},{
-							duration: $speed,
-							step: function(p) {
-								$bar.css({
-									'-webkit-transform': 'rotate('+ ((p*1.8)) +'deg)',
-									'transform': 'rotate('+ ((p*1.8)) +'deg)'
-								});
-								$barIn.css({
-									'-webkit-transform': 'rotate('+ -((p*1.8)) +'deg)',
-									'transform': 'rotate('+ -((p*1.8)) +'deg)'
-								});
-								$mark.offset({left:$barIn.offset().left, top:$barIn.offset().top});
-
-								var $maxHeight = 36;
-								if(p > ($perc/3))$maxHeight = 72;
-								if(p > ($perc/3*2))$maxHeight = 144;
-								var $bgH = Math.max(0,((p/100)*$maxHeight)-12);
-								$bg.find('i').css('height',$bgH);
-							}
-						});
-						$mark.find('strong').animateNumber($markNum,$speed,true);
-						$remain.find('>strong>strong').animateNumber($remainNum,$speed,true);
-						//$total.find('span').animateNumber($totalNum,$speed,true);
-					break;
-					case 'swiperBar':
-						var $swiper = $target.closest('.ui-swiper');
-
-						if($target.closest('.ui-swiper-wrap').hasClass('only')){
-							barInit();
-						}else{
-							//swipe 안에 막대 차트
-							var $idx = $swiper.data('idx');
-							swiperUI.array[$idx-1].on('transitionEnd',function(){
-								var $closestIdx = $target.closest('.swiper-slide').index(),
-									$paginationIdx = $target.closest('.ui-swiper').find('.swiper-pagination-bullet-active').index();
-								if($(window).width() < 760){
-									if($closestIdx == $paginationIdx){
-										barInit();
-									}
-								}else{
-									if($closestIdx == $paginationIdx || $closestIdx == ($paginationIdx+1)){
-										barInit();
-									}
-								}
-							});
-
-							if($target.closest('.swiper-slide').index() < ($(window).width()<760?1:2)){
-								barInit();
-							}
-						}
-
-						$(window).resize(function(){
-							if(isAnimation == false){
-								setTimeout(function(){ //슬릭 안에 있어서 left값을 제대로 못갖고옴.. setTimeout 추가
-									var $tLeft = $barTotal.position().left;
-									$target.find('.bar>.total').css({
-										'left': $tLeft
-									});
-								},50);
-							}
-						});
-					break;
-					default:
-						//막대 차트
-						barInit();
-						$(window).resize(function(){
-							if(isAnimation == false){
-								var $tLeft = $barTotal.position().left;
-								$target.find('.bar>.total').css({
-									'left': $tLeft
-								});
-							}
-						});
-					break;
-				}
-			}
-		});
-
-		var barInit = function(){
-			$barTotal = $target.find('.total').not('.clone');
-			if($target.hasClass('type2')){
-				if(!$mark.find('.perc').length){$mark.append('<strong class="perc">('+$perc+'%)</strong>');}
-				if($perc >= 60)$target.addClass('is_good');
-			}
-			if($bar.width() == 0){
-				$bar.stop(true,false).animate({'width':$perc+'%'},{
-					duration: $speed,
-					step: function(now){
-						if(!$target.hasClass('type2')){
-							var $tLeft = $barTotal.position().left;
-							$target.find('.total.clone').css({
-								'left': $tLeft
-							});
-						}
-					},
-					complete:function(){
-						isAnimation = false;
-					}
-				});
-				if(!$target.hasClass('type2')){
-					$target.find('.mark strong').animateNumber($markNum,$speed,true);
-					$target.find('.total strong').animateNumber($totalNum,$speed,true);
-				}
-			}
-		};
-	});
-};
-
-/*** 애니메이션 ***/
-//data-animation
-var scrollItem ={
-	checkInView: function(target){
-		var $window = $(window),
-			$wHeight = $window.height(),
-			$scrollTop = $window.scrollTop(),
-			$winBottom = ($scrollTop + $wHeight);
-
-		$.each(target, function(){
-			var $el = $(this),
-				$elHeight = $($el).outerHeight(),
-				//$elTop = $($el).offset().top,
-				$elTop = $($el).offset().top + 50,
-				//$elCenter = $elTop + ($elHeight/2),
-				$elCenter = $elTop + ($elHeight/5),
-				//$elBottom = $elTop + $elHeight,
-				//$elBottom = $elTop + ($elHeight/5)*4,
-				$elBottom = $elTop + $elHeight - 50,
-				$animationClass = $el.data('animation'),
-				$delay = $el.data('delay'),
-				$duration = $el.data('duration'),
-				$animationIn = $el.data('animation-in'),
-				$addClassAry = ['on','active'];
-
-			if(!$el.hasClass('animated') && $addClassAry.indexOf($animationClass) == -1){
-				if($delay>0){
-					$el.css({
-						'-webkit-animation-delay':$delay+'ms',
-						'animation-delay':$delay+'ms'
-					});
-				}
-				if($duration>0){
-					$el.css({
-						'-webkit-animation-duration':$duration+'ms',
-						'animation-duration':$duration+'ms'
-					});
-				}
-				$el.addClass('animated paused '+$animationClass);
-			}
-
-			if($animationIn){
-				if(($elTop >= ($scrollTop - ($wHeight/2))) && ($elBottom <= ($winBottom + ($wHeight/2)))){
-					if($el.hasClass('animated')){
-						$el.addClass('paused '+$animationClass);
-					}
-				}else{
-					if($el.hasClass('animated')){
-						$el.removeClass($animationClass);
-					}else{
-						$el.removeClass($animationClass);
-					}
-				}
-			}
-			//if(($elCenter >= $scrollTop) && ($elCenter <= $winBottom)){
-			if(($elBottom >= $scrollTop) && ($elTop <= $winBottom)){
-				if($el.hasClass('animated')){
-					if($el.closest('.tab_panel').length && !$el.closest('.tab_panel').hasClass('active'))return;
-					$el.removeClass('paused');
-				}else{
-					$el.addClass($animationClass);
-				}
-			}
-		});
-	},
-	scrollChk: function(target){
-		var $scrollTop = $(window).scrollTop();
-		//console.log($scrollTop)
-		$.each(target, function(){
-			var $el = $(this),
-				$Data = $el.data('scrollchk').split(','),
-				$Start = $Data[0],
-				$End = $Data[1],
-				$type = $Data[2].split(' ');
-
-			switch($Start){
-				case 'in':
-					$Start = $el.parent().offset().top - $(window).height();
-				break;
-				case 'top':
-					$Start = $el.parent().offset().top - 50;
-				break;
-				case 'bottom':
-					$Start = $el.parent().offset().top - $el.parent().outerHeight();
-				break;
-				default:
-					$Start = parseInt($Start);
-				break;
-			}
-
-			switch($End){
-				case 'out':
-					$End = $el.parent().offset().top + $el.parent().outerHeight();
-				break;
-				case 'top':
-					$End = $el.parent().offset().top - 50;
-				break;
-				case 'bottom':
-					$End = $el.parent().offset().top - $el.parent().outerHeight();
-				break;
-				default:
-					$End = parseInt($End);
-				break;
-			}
-
-			var isFadeOut = false,
-				isFadeIn = false,
-				isTopDown = false,
-				isSclDown = false,
-				isSclUp = false;
-			if($.inArray('fadeOut',$type) != -1)isFadeOut = true;
-			if($.inArray('fadeIn',$type) != -1)isFadeIn = true;
-			if($.inArray('topDown',$type) != -1)isTopDown = true;
-			if($.inArray('sclDown',$type) != -1)isSclDown = true;
-			if($.inArray('sclUp',$type) != -1)isSclUp = true;
-
-			var $min = $el.parent().outerHeight()-$el.outerHeight(),
-				$rate = ($el.outerHeight()-$el.parent().outerHeight())/($End-$Start),
-				$move = -($scrollTop-$Start)*($rate),
-				$opacity = Math.max(0,Math.min(1,($scrollTop-$Start)/$End));
-
-			if($Start > $scrollTop){
-				if(isFadeOut)$el.css('opacity',1);
-				if(isFadeIn)$el.css('opacity',0);
-				if(isTopDown)$el.css('top',0);
-				if(isSclDown)$el.css('top',0);
-				if(isSclUp)$el.css('bottom',0);
-			}else if($scrollTop > $End){
-				if(isFadeOut)$el.css('opacity',0);
-				if(isFadeIn)$el.css('opacity',1);
-				if(isSclDown)$el.css('top',$min);
-				if(isSclUp)$el.css('bottom',$min);
-			}else{
-				if(isFadeOut)$el.css('opacity',1-$opacity);
-				if(isFadeIn)$el.css('opacity',$opacity);
-				if(isTopDown)$el.css('top',($scrollTop-$Start)/2);
-				if(isSclDown)$el.css('top',Math.max($min,$move));
-				if(isSclUp)$el.css('bottom',Math.max($min,$move));
-			}
-		});
-	},
-	init: function(){
-		var $animations = $.find('*[data-animation]');
-		if(!isAppChk('ios')){	//아이폰앱에서 실행안되게(웹뷰 문제로 제대로 실행 안됨)
-			if($animations.length > 0){
-				$(window).on('scroll resize',function(){
-					scrollItem.checkInView($animations);
-				});
-			}
-
-
-			var $scrollFades = $.find('*[data-scrollchk]');
-			if($scrollFades.length > 0){
-				$(window).on('scroll resize',function(){
-					scrollItem.scrollChk($scrollFades);
-				});
-			}
-		}else{
-			if($animations.length > 0){
-				$.each($animations,function(){
-					var $this = $(this),
-						$data = $this.data('animation');
-					if($data == 'on')$this.addClass('on');
-				});
-			}
-		}
-	}
-};
-
 /*** 플러그인 ***/
-//검색어 강조표시
-$.fn.highlightTxt = function(keyword){
-	return this.each(function(){
-		var $firstHtml = $(this).data('html'),
-			$html = $(this).html();
-		if(!$firstHtml){
-			$firstHtml = $(this).html();
-			$(this).data('html',$html);
-		}
-		if(keyword != ''){
-			if($firstHtml.indexOf(keyword) >= 0){
-				$html = $firstHtml.split(keyword).join('<em class="t_keyword">'+keyword+'</em>');
-			}else{
-				$html = $firstHtml;
-			}
-		}else{
-			$html = $firstHtml;
-		}
-		$(this).html($html);
-	});
-};
-
-//resize가 끝나면: resizeEnd
-//$(window).resizeEnd(function(){console.log('resizeEnd');},300);
-var resizeEndCut = 0;
-$.fn.resizeEnd = function(callback, timeout){
-	resizeEndCut = resizeEndCut+1;
-	var cut = resizeEndCut;
-	return this.each(function(){
-		var $this = $(this);
-		$this.resize(function(){
-			if($this.data('resizeTimeout'+cut)){
-				clearTimeout($this.data('resizeTimeout'+cut));
-			}
-			$this.data('resizeTimeout'+cut, setTimeout(callback,timeout));
-		});
-	});
-};
-
-//scroll이 끝나면: scrollEnd
-//$(window).scrollEnd(function(){console.log('scrollEnd');},300);
-var scrollEndCut = 0;
-$.fn.scrollEnd = function(callback, timeout){
-	scrollEndCut = resizeEndCut+1;
-	var cut = scrollEndCut;
-	return this.each(function(){
-		var $this = $(this);
-		$this.scroll(function(){
-			if($this.data('scrollTimeout'+cut)){
-				clearTimeout($this.data('scrollTimeout'+cut));
-			}
-			$this.data('scrollTimeout'+cut, setTimeout(callback,timeout));
-		});
-	});
-};
-
-//css 지우기
-// $('body').removeCss('background');
-// $('body').removeCss(['border','background']);
-// $('body').removeCss({color: 'white'});
-$.fn.removeCss = function (css) {
-	var properties = [];
-	var is = $.type(css);
-
-	if (is === 'array') properties = css;
-	if (is === 'object') for (var rule in css) properties.push(rule);
-	if (is === 'string') properties = css.replace(/,$/, '').split(',');
-
-	return this.each(function () {
-		var $this = $(this);
-		$.map(properties, function (prop) {
-			$this.css(prop, '');
-		});
-	});
-};
-
-//같은높이값: sameHeight(자기 아래 타켓지정 없으면 children);
-//$('.ul').sameHeight();
-//$('.ul').sameHeight('.li');
-$.fn.sameHeight = function(item){
-	var $this = this;
-	$(window).on('resize',function(){
-		$this.each(function(){
-			var $heightArry = [],
-				$item = $(this).find(item);
-			if(item == null)$item = $(this).children();
-			$item.each(function(){
-				$(this).css('height','auto');
-				var $height = $(this).outerHeight();
-				$heightArry.push($height);
-			});
-			var $maxHeight = Math.max.apply(null, $heightArry);
-			$item.css('height',$maxHeight);
-		});
-	});
-};
-
 //글자바꾸기: changeTxt(바꿀텍스트,바낄텍스트)
 //$('.txt').changeTxt('열기','닫기');
 $.fn.changeTxt = function(beforeTxt, afterTxt){
@@ -4276,60 +2722,8 @@ $.fn.changeTxt = function(beforeTxt, afterTxt){
 	});
 };
 
-//클래스 넣었다 빼기: addRemoveClass(클래스명, 붙는 시간, 빼는 시간)
-//$(this).addRemoveClass('on', 500, 1000);
-$.fn.addRemoveClass = function(className,addTime,removeTime){
-	var element = this;
-	var addIt = function(){
-		element.addClass(className);
-	};
-	var removeIt = function(){
-		element.removeClass(className);
-	};
-	setTimeout(function(){addIt();setTimeout(removeIt,removeTime);},addTime);
-	return this;
-};
 
 /*** 유틸함수 ***/
-//ie에서 startsWith,endsWith 작동되게
-if(isPC.msie()){
-	String.prototype.startsWith = function(str){
-		if(this.length < str.length) return false;
-		return this.indexOf(str) == 0;
-	};
-	String.prototype.endsWith = function(str){
-		if(this.length < str.length) return false;
-		return this.lastIndexOf(str) + str.length == this.length;
-	};
-}
-
-//랜덤값 추출
-var randomNumber = function(min,max,point){
-	return ((Math.random() * (max-min)) + min).toFixed(point);
-};
-
-//전화번호 포맷
-var autoPhoneFormet = function(str,mark){
-	var $phone = str.replace(/[^0-9]/g, ''),
-		$phoneAry = [];
-	if(!mark)mark = '-';
-	if($phone.length < 4){
-		$phoneAry.push($phone);
-	}else if(str.length < 8){
-		$phoneAry.push($phone.substr(0,3));
-		$phoneAry.push($phone.substr(3));
-	}else if(str.length < 11){
-		$phoneAry.push($phone.substr(0,3));
-		$phoneAry.push($phone.substr(3,3));
-		$phoneAry.push($phone.substr(6));
-	}else{
-		$phoneAry.push($phone.substr(0,3));
-		$phoneAry.push($phone.substr(3,4));
-		$phoneAry.push($phone.substr(7));
-	}
-	return $phoneAry.join(mark);
-};
-
 //Input date
 var autoDateFormet = function(str,mark){
 	var $date = str.replace(/[^0-9]/g, ''),
@@ -4363,15 +2757,6 @@ var autoTimeFormet = function(str,mark){
 		if(str.length > 4)$timeAry.push($time.substr(4));
 	}
 	return $timeAry.join(mark);
-};
-
-//파라미터 값 갖고오기
-var getUnlParams = function(){
-	var params = {};
-	window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(str,key,value){
-		params[key]=value;
-	});
-	return params;
 };
 
 //날짜구하기
@@ -4412,51 +2797,8 @@ var $nowDateFull=parseInt(todayTimeString()),					//년+월+일+시+분
 	$afterDateDay=function(day){
 		return parseInt(todayTimeString(day-1).substr(0,8));
 	};
-	//console.log($nowDateFull,$nowDateHour,$nowDateDay,$afterDateDay(7),$nowDateMonth,$nowDateOnlyTime,$nowDateOnlyYear,$nowDateOnlyMonth,$nowDateOnlyDay,$nowDateOnlyHour,$nowDateOnlyMin)
-
-//byte 체크
-var bytePrint=function(tar){
-	var $txt = $(tar).text();
-	if($(tar).is('input') || $(tar).is('select') || $(tar).is('textarea')){
-		$txt = $(tar).val();
-	}
-	return $txt.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,'$&$1').length;
-};
-
-//스크롤바 여부확인
-var isScrollbar = function(target,direction){
-	if(!!direction)direction = 'vertical';
-	if (direction === 'vertical'){
-		return $(target).get(0)? $(target).get(0).scrollHeight > $(target).innerHeight() : false;
-	}
-	if(direction === 'horizon'){
-		return $(target).get(0) ? $(target).get(0).scrollWidth > $(target).innerWidth() : false;
-	}
-};
 
 //숫자만
 var onlyNumber = function(num){
 	return num.toString().replace(/[^0-9]/g,'');
-};
-
-//콤마넣기
-var addComma = function(num){
-	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
-};
-
-//콤마빼기
-var removeComma = function(num){
-	return num.toString().replace(/,/gi,'');
-};
-
-//배열에서 문자열 찾기
-var arrayIndexOf = function(array,str){
-	var $val = false;
-	//for(var i in array){
-	for(var i=0; i<array.length; i++){
-		if(array[i].indexOf(str) >= 0){
-			$val = true;
-		}
-	}
-	return $val;
 };

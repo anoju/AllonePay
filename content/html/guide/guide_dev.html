@@ -255,39 +255,6 @@ body{background:#f1f1f1;}
 				</div>
 			</div>
 
-			<h4 class="gd__h3">토스트팝업</h4>
-			<div>
-				<div><a href="#" class="button line" id="toastOpen">토스트팝업 열기</a></div>
-				<script>
-					$('#toastOpen').click(function(e){
-						e.preventDefault();
-						var msg = '설명 글을 넣으면됩니다.<br>줄바꿈은 br태그로 처리가능';
-						toastBox(msg);
-					})
-				</script>
-				<div class="txt_list">
-					<div class="guide_box">
-						toastBox('<strong class="red">넣으려는 메세지</strong>');
-					</div>
-					<ul>
-						<li class="dot">토스트팝업은 열린 후 약 3초 후 자동으로 닫힙니다.</li>
-					</ul>
-				</div>
-			</div>
-			
-			<h4 class="gd__h3">로딩 팝업</h4>
-			<div>
-				<div>
-					<a href="#" class="button line" onclick="Loading.open();$(this).next().css('z-index',10000);">로딩창 열기</a>
-					<a href="#" class="button line" onclick="Loading.close();$(this).removeAttr('style');">로딩창 닫기</a>
-				</div>
-				<div class="guide_box">
-					Loading.open(); //로딩창열기 <br>
-					Loading.close(); //로딩창닫기
-				</div>
-			</div>
-
-
 			<h2 class="gd__h1">폼관련 UI</h2>
 			<h3 class="gd__h2">input 밸리데이션 체크 후 error 표시 할때</h3>
 			<div>

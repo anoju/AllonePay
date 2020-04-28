@@ -43,15 +43,6 @@
 				}
 			});
 		});
-		
-
-		var msg = '신청하신 보험계약대출 300만원이 정상적으로 접수되었습니다.<br>3분 이내에 신청하신 계좌로 대출금이 지급됩니다.'
-		toastBox(msg);
-
-		//오늘하루 그만보기
-		//todayPop.init();
-
-		Loading.box('#box');
 	});
 </script>
 </head>
@@ -120,18 +111,6 @@
 					</div>
 					<div class="error_txt">카드를 선택해주세요.</div>
 				</div>
-			</div>
-			<h2 class="gd__h1">로딩</h2>
-			<div class="btn_wrap mt20">
-				<div class="flex">
-					<a href="#" class="button h48 blue" onclick="Loading.open();$(this).next().css('z-index',10000)">Loading.open();</a>
-					<a href="#" class="button h48 gray" onclick="Loading.close();$(this).removeAttr('style');">Loading.close();</a>
-				</div>
-			</div>
-			<div id="box" class="mt20">
-				<!-- <div class="loading_box">
-					<div class="tl"><div><div class="ld_lg" aria-hidden="true"><div class="lg_d"></div><div class="lg_b"></div></div><div class="blind">화면을 불러오는중입니다.</div></div></div>
-				</div> -->
 			</div>
 
 			<div class="btn_wrap bottom_fixed">
