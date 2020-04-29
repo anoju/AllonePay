@@ -153,10 +153,10 @@
 
 /*리스트*/
 .list_ty1{border-top:1px solid #bbb;}
-.list_ty1>li{position:relative;border-bottom:1px solid #ddd;}
+.list_ty1 li{position:relative;border-bottom:1px solid #ddd;}
 .list_ty1 .inner{display:block;padding:21px 15px;}
-.list_ty1>li>.checkbox{position:absolute;left:1px;top:50%;margin-top:-11px;}
-.list_ty1>li>.checkbox+.inner{padding-left:34px;}
+.list_ty1 li>.checkbox{position:absolute;left:1px;top:50%;margin-top:-11px;}
+.list_ty1 li>.checkbox+.inner{padding-left:34px;}
 .card_info_tbl{display:table;width:100%;}
 .card_info_tbl>div{display:table-cell;vertical-align:middle;}
 .card_info_tbl>.img{width:76px;}
@@ -164,3 +164,12 @@
 .card_info_tbl>.img+div{padding-left:24px;}
 .card_info_tbl .tit{color:#111;}
 .card_info_tbl .sub{font-size:1.2rem;color:#666;}
+
+.list_ty2{margin:0 -20px;border-top:1px solid #bbb;}
+.list_ty2.first{margin-top:-30px;border-top-width:0;}
+.list_ty2 li{border-bottom:1px solid #ddd;}
+.list_ty2 .inner{position:relative;display:block;padding:22px 20px;}
+.list_ty2 a.inner{padding-right:33px;}
+.list_ty2 a.inner:before{content:'';display:block;position:absolute;top:50%;right:20px;width:10px;height:10px;margin:-6px 3px 0 0;border:1px solid #333;border-width:1px 1px 0 0;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-transition:0.3s;transition:0.3s;}
+.list_ty2 .tit{display:block;display:-webkit-box;overflow:hidden;word-wrap:break-word;-webkit-box-orient:vertical;text-overflow:ellipsis;font-size:1.5rem;color:#333;-webkit-line-clamp:2;}
+.list_ty2 .date{font-size:1.3rem;color:#858585;margin-top:6px;}

@@ -331,6 +331,7 @@ div.tit_h4 .tit{font-size:1.5rem;color:#111}
 	0%{-webkit-transform:scale(0);transform:scale(0);opacity:1;}
 	100%{-webkit-transform:scale(2.5);transform:scale(2.5);opacity:0;}
 }
+.btn_more{margin-top:30px;}
 .btn_more .button{display:block;}
 .btn_more .button strong{font-weight:700;}
 .btn_more .button:after{content:'';display:inline-block;width:10px;height:6px;margin-left:10px;vertical-align:1px;background:url(../img/btn/bt_ic_arr_down.png) no-repeat center center;background-size:contain;}
