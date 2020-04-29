@@ -14,11 +14,11 @@
 .pop_head.no_head h1{padding:0;height:0;overflow:hidden;}
 .pop_head.shadow{box-shadow:0 0 5px rgba(0,0,0,0.1);}
 .pop_head h1{padding:14px 55px 14px 20px;font-size:1.8rem;line-height:21px;margin:0;color:#111;font-weight:500;}
-.pop_head h1.logo{height:50px;background:url(../images/common/header_logo.png) no-repeat center center;background-size:auto 27px;vertical-align:middle;font-size:3px;color:transparent;}
+.pop_head h1.logo{height:50px;background:url(../img/common/header_logo.png) no-repeat center center;background-size:auto 27px;vertical-align:middle;font-size:3px;color:transparent;}
 .pop_head h1.offscreen{padding:0;}
 .pop_head.t2 h1{background:#efefef;}
 .pop_head .pop_close,
-.pop_close.last_focus{display:block;position:absolute;top:9px;right:15px;width:30px;height:30px;background:url(../images/common/pop_close.png) 50% 50% no-repeat;background-size:20px auto;border-radius:100%}
+.pop_close.last_focus{display:block;position:absolute;top:9px;right:15px;width:30px;height:30px;background:url(../img/common/pop_close.png) 50% 50% no-repeat;background-size:20px auto;border-radius:100%}
 .pop_close.last_focus{background:none !important;opacity:0;}
 .pop_cont{padding:80px 0 30px;overflow:auto;box-sizing:border-box;-webkit-overflow-scrolling:touch;}
 .pop_head.no_head+.pop_cont{padding-top:30px;}
@@ -83,7 +83,7 @@ html.iPhoneX .total_search.is_floating .pop_wrap{
 .total_search .pop_close.last_focus{position:fixed;right:20px;top:auto;bottom:20px;width:50px;height:50px;}
 .total_search.is_floating .pop_head .pop_close,
 .total_search.is_floating .pop_close.last_focus{bottom:80px;}
-.total_search .pop_head .pop_close{background:#fff url(../images/main/floating_btn_close.png) no-repeat;background-size:contain;border-radius:17px;box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.total_search .pop_head .pop_close{background:#fff url(../img/main/floating_btn_close.png) no-repeat;background-size:contain;border-radius:17px;box-shadow:0 1px 3px rgba(0,0,0,.1);}
 html.iPhoneX .total_search .pop_head .pop_close,
 html.iPhoneX .total_search .pop_close.last_focus{bottom:calc(constant(safe-area-inset-bottom) + 20px);bottom:calc(env(safe-area-inset-bottom) + 20px);}
 html.iPhoneX .total_search.is_floating .pop_head .pop_close,

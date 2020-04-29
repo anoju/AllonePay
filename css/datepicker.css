@@ -3,7 +3,7 @@
 /*****************************************************************
 jq-Datepicker
 *****************************************************************/
-.ui-datepicker-trigger{position:absolute;top:0;right:11px;width:22px;height:44px;background:url(../images/calendar/ico_date.png) 50% 50% no-repeat;background-size:contain;font-size:3px;color:transparent;overflow:hidden;}
+.ui-datepicker-trigger{position:absolute;top:0;right:11px;width:22px;height:44px;background:url(../img/calendar/ico_date.png) 50% 50% no-repeat;background-size:contain;font-size:3px;color:transparent;overflow:hidden;}
 .ui-widget{font-size:1.1em;}
 .ui-widget .ui-widget{font-size:1em;}
 .ui-widget input,
@@ -31,7 +31,7 @@ jq-Datepicker
 .ui-datepicker .ui-datepicker-prev-y span,
 .ui-datepicker .ui-datepicker-next-y span,
 .ui-datepicker .ui-datepicker-prev span,
-.ui-datepicker .ui-datepicker-next span{display:inline-block;width:18px;height:18px;background:url(../images/calendar/spr_calendar.png) 0 0 no-repeat;background-size:40px auto;font-size:3px;color:transparent;vertical-align:middle;}
+.ui-datepicker .ui-datepicker-next span{display:inline-block;width:18px;height:18px;background:url(../img/calendar/spr_calendar.png) 0 0 no-repeat;background-size:40px auto;font-size:3px;color:transparent;vertical-align:middle;}
 .ui-datepicker .ui-datepicker-prev-y.ui-state-disabled span{background-position:-20px 0}
 .ui-datepicker .ui-datepicker-prev span{background-position:0 -20px}
 .ui-datepicker .ui-datepicker-prev.ui-state-disabled span{background-position:-20px -20px}
@@ -52,7 +52,7 @@ jq-Datepicker
 .ui-datepicker td a{display:block;width:30px;height:30px;line-height:30px;font-size:1.3rem;color:#111;text-align:center;text-decoration:none;border-radius:50%;margin:0 auto;}
 .ui-datepicker .ui-datepicker-buttonpane{background:none;border:none;}
 .ui-datepicker .ui-datepicker-buttonpane button{display:block;position:absolute;top:36px;width:25px;height:25px;cursor:pointer;}
-.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-close{top:13px;right:13px;width:24px;height:24px;padding:0;background:url(../images/calendar/close.png) no-repeat center center;background-size:16px;text-indent:-9999px;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-close{top:13px;right:13px;width:24px;height:24px;padding:0;background:url(../img/calendar/close.png) no-repeat center center;background-size:16px;text-indent:-9999px;}
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current{display:none;left:20px;color:#666;font-size:1.3rem;line-height:25px;text-align:center;background:none;}
 
 .ui-datepicker .ui-state-highlight{border:1px solid #666;background-color:#666;font-weight:bold;color:#fff;}

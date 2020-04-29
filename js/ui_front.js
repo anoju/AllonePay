@@ -223,6 +223,7 @@ var common = {
 		}
 	},
 	init:function(){
+		common.layout();
 		if($('.tab_wrap.add_fixed').length)common.fixed('.tab_wrap.add_fixed');
 	}
 };

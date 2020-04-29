@@ -26,8 +26,8 @@
 .help_txt{padding-left:10px;color:#8997af;}
 .help_txt:before{content:'';position:absolute;top:9px;left:0;width:3px;height:3px;background-color:#8997af;border-radius:100%}
 .help_txt+.help_txt{margin-top:15px;}
-.error_txt{display:none;padding-left:20px;color:#fd775c;background:url(../images/common/ico_error_txt.png) no-repeat left 3px;background-size:14px auto;}
-.error_txt.checked{color:#3182f7;background-image:url(../images/common/ico_error_txt_on.png);}
+.error_txt{display:none;padding-left:20px;color:#fd775c;background:url(../img/common/ico_error_txt.png) no-repeat left 3px;background-size:14px auto;}
+.error_txt.checked{color:#3182f7;background-image:url(../img/common/ico_error_txt_on.png);}
 
 .form_item{position:relative;margin-top:22px;}
 .tit_h2+.form_item{margin-top:25px;}
@@ -54,7 +54,7 @@
 .form_item .td.swt{text-align:right;width:70px;vertical-align:middle;}
 .form_item .td.email_inp .input input{padding-right:60px;}
 .form_item .td.email_inp .inp_del{right:20px;}
-.form_item .td.email_inp .btn_sel{display:block;position:absolute;right:0;top:0;width:23px;height:100%;font-size:3px;color:transparent;background:url(../images/common/select_arrow.png) 100% 50% no-repeat;background-size:12px auto;overflow:hidden;}
+.form_item .td.email_inp .btn_sel{display:block;position:absolute;right:0;top:0;width:23px;height:100%;font-size:3px;color:transparent;background:url(../img/common/select_arrow.png) 100% 50% no-repeat;background-size:12px auto;overflow:hidden;}
 .form_item .unit{display:block;position:absolute;right:10px;top:0;color:#111;line-height:44px;font-size:1.4rem;}
 .form_item .unit:first-child{left:10px;right:auto;}
 
@@ -75,8 +75,8 @@
 .chk_list .chk_item+.chk_item{margin-top:0;border-top:0 none;}
 .chk_list .chk_item .checkbox{padding-right:50px;}
 .chk_list .chk_item .checkbox>.chk_link{display:block;position:absolute;top:0;right:0;width:45px;height:100%;overflow:hidden;z-index:2;}
-.chk_list .chk_item .checkbox>.chk_link:after{content:'';display:block;width:5px;height:100%;position:absolute;right:15px;top:0;background:url(../images/common/ico_agree_arr.png) no-repeat right center;background-size:contain;}
-.chk_list .chk_item .checkbox>.chk_link.toggle:after{width:12px;background-image:url(../images/common/ico_toggle.png);-webkit-transform:rotate3d(1,0,0,0deg);transform:rotate3d(1,0,0,0deg);-webkit-transition:0.3s;transition:0.3s;}
+.chk_list .chk_item .checkbox>.chk_link:after{content:'';display:block;width:5px;height:100%;position:absolute;right:15px;top:0;background:url(../img/common/ico_agree_arr.png) no-repeat right center;background-size:contain;}
+.chk_list .chk_item .checkbox>.chk_link.toggle:after{width:12px;background-image:url(../img/common/ico_toggle.png);-webkit-transform:rotate3d(1,0,0,0deg);transform:rotate3d(1,0,0,0deg);-webkit-transition:0.3s;transition:0.3s;}
 .chk_list .chk_item .checkbox>.chk_link.toggle.open:after{-webkit-transform:rotate3d(1,0,0,180deg);transform:rotate3d(1,0,0,180deg);}
 .chk_list .chk_item>.checkbox>.lbl,
 .chk_list .chk_item>.radio>.lbl{color:#111;font-weight:500;}
@@ -105,11 +105,11 @@
 .search_wrap .search_cont .etc{overflow:hidden;padding:10px 20px;border-top:1px solid #ddd;}
 .search_wrap .search_cont .etc a{font-size:1.2rem;color:#111;}
 .search_wrap .search_cont .etc a+a{margin-left:15px;}
-.search_wrap .search_cont .link_del{position:absolute;top:50%;right:20px;display:block;width:24px;height:24px;margin-top:-12px;font-size:3px;color:transparent;overflow:hidden;background:url(../images/common/inp_del.png) no-repeat center center;background-size:contain;}
+.search_wrap .search_cont .link_del{position:absolute;top:50%;right:20px;display:block;width:24px;height:24px;margin-top:-12px;font-size:3px;color:transparent;overflow:hidden;background:url(../img/common/inp_del.png) no-repeat center center;background-size:contain;}
 .search_box .input.add_btn input{padding-right:60px;}
 .search_box .input.add_btn .inp_del{right:36px;}
 .search_box .btn_search{position:absolute;right:0;top:0;display:block;width:38px;height:44px;}
-.search_box .btn_search:before{content:'';display:block;position:absolute;top:0;left:50%;width:16px;height:100%;margin-left:-8px;background:url(../images/common/btn_search.png) no-repeat 50% 50%;background-size:contain}
+.search_box .btn_search:before{content:'';display:block;position:absolute;top:0;left:50%;width:16px;height:100%;margin-left:-8px;background:url(../img/common/btn_search.png) no-repeat 50% 50%;background-size:contain}
 .search_box.full{border:1px solid #ddd;border-width:1px 0;margin:0 -20px;padding:0px 20px;}
 .search_box.full.focus{border-color:#3182f7;}
 .search_box.full>div{position:relative;padding-right:30px;}
@@ -135,12 +135,12 @@
 .file_item{position:relative;margin-top:6px;border:1px solid #ddd;border-radius:4px;padding:10px 45px 10px 20px;font-size:1.5rem;word-break:break-all;}
 .file_item strong,
 .file_item .strong{display:block;color:#111;font-weight:500;}
-.file_item .item_del{position:absolute;top:50%;right:4px;padding:0;width:40px;height:40px;margin-top:-20px;background:url(../images/common/inp_del.png) no-repeat 50% 50%;background-size:20px 20px}
+.file_item .item_del{position:absolute;top:50%;right:4px;padding:0;width:40px;height:40px;margin-top:-20px;background:url(../img/common/inp_del.png) no-repeat 50% 50%;background-size:20px 20px}
 
 /**/
 .sel_item_wrap{margin-top:15px;font-size:0;}
 .sel_item{position:relative;display:inline-block;margin:3px 6px 3px 0;border:1px solid #d4d4d4;padding:6px 35px 6px 10px;border-radius:20px;vertical-align:top;font-size:1.3rem;}
-.sel_item .del{position:absolute;top:50%;right:5px;display:inline-block;width:20px;height:20px;margin-top:-10px;vertical-align:middle;background:url(../images/common/inp_del.png);font-size:3px;color:transparent;background-size:contain;}
+.sel_item .del{position:absolute;top:50%;right:5px;display:inline-block;width:20px;height:20px;margin-top:-10px;vertical-align:middle;background:url(../img/common/inp_del.png);font-size:3px;color:transparent;background-size:contain;}
 
 /*서비스신청*/
 .service_info{padding-top:18px;color:#111;text-align:center;font-size:0px;}
