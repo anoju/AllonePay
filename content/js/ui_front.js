@@ -306,8 +306,8 @@ var Layer = {
 		//팝업그리기
 		Layer.alertHtml(type,$popId,$actionId,$cancelId);
 		if(!!option.title){
-			var $titleHtml = '<div class="pop_head"><h1>'+option.title+'</h1></div>';
-			$('#'+$popId).find('.pop_wrap').prepend($titleHtml);
+			var $titleHtml = '<div class="'+Layer.headClass+'"><h1>'+option.title+'</h1></div>';
+			$('#'+$popId).find('.'+Layer.wrapClass).prepend($titleHtml);
 		}
 		if(!!option.actionTxt)$('#'+$actionId).text(option.actionTxt);
 		if(!!option.cancelTxt)$('#'+$cancelId).text(option.cancelTxt);
@@ -526,6 +526,12 @@ var Layer = {
 			e.preventDefault();
 			var $tar = $(this).is('a') ? $(this).attr('href') : '#'+$(this).attr('for');
 			$($tar).next('.ui-select-open').focus().click();
+		});
+		$(document).on('click','.' +Layer.selectClass,function(e){
+			e.preventDefault();
+			Layer.close(this);
+		}).on('click','.'+Layer.wrapClass,function(e){
+			e.stopPropagation();
 		});
 		//건물면적
 		var layerSelectClose = function(target,isInp){
@@ -1040,8 +1046,8 @@ var buttonUI ={
 			var $show = $(this).data('show'),
 				$hide = $(this).closest('.ui-tab-rdo').data('hide');
 
-			$($hide).removeClass('active');
-			$($show).addClass('active');
+			$($hide).removeClass('show');
+			$($show).addClass('show');
 		});
 		if($('.ui-tab-rdo').length){
 			$('.ui-tab-rdo').each(function(){
@@ -1050,7 +1056,7 @@ var buttonUI ={
 					var $tar = $(this).data('show');
 					if(tarAry.indexOf($tar) < 0 && !!$tar)tarAry.push($tar);
 					if($(this).is(':checked')){
-						$($tar).addClass('active');
+						$($tar).addClass('show');
 					}
 				});
 				$(this).data('hide',tarAry.join(','));
@@ -1431,7 +1437,7 @@ var formUI = {
 		//input 삭제버튼
 		$(document).on('keyup focus','.input input, .textarea textarea',function(){
 			var $this = $(this), $val = $this.val();
-			if($this.prop('readonly') || $this.prop('disabled') || $this.hasClass('no_del') || $this.hasClass('datepicker') || $this.hasClass('time')){
+			if($this.prop('readonly') || $this.prop('disabled') || $this.attr('type') == 'password' || $this.hasClass('no_del') || $this.hasClass('datepicker') || $this.hasClass('time')){
 				return false;
 			}
 			if($val != ''){
@@ -2608,7 +2614,9 @@ var swiperUI = {
 			$(tar).each(function(){
 				var $this = $(this),
 					$swipeIdx = swiperUI.array.length+1,
-					$itemLength = $this.children().length;
+					$itemLength = $this.children().length,
+					$autoplayOpt = '',
+					$isLoop = false;
 				if($itemLength == 1){
 					$this.closest('.ui-swiper-wrap').addClass('only');
 				}else if($itemLength > 1){
@@ -2617,12 +2625,22 @@ var swiperUI = {
 					if(!$this.hasClass('swiper-container-initialized')){
 						$this.children('.item').addClass('swiper-slide');
 						$this.wrapInner('<div class="swiper-wrapper"></div>');
-						$this.addClass('swipe-container').append('<div class="swiper-pagination"></div>');
+						if($this.hasClass('autoplay')){
+							$this.addClass('swipe-container').append('<div class="swiper-navi"><button type="button" class="swiper-auto-ctl"><span class="blind">자동롤링 중지</span></button><div class="swiper-pagination"></div></div>');
+							$autoplayOpt = {
+								delay: 3000
+							};
+							$isLoop = true;
+						}else{
+							$this.addClass('swipe-container').append('<div class="swiper-pagination"></div>');
+						}
 
 						var $option = {
 							slidesPerView: 'auto',
 							slideClass:'item',
 							resizeReInit:true,
+							autoplay:$autoplayOpt,
+							loop:$isLoop,
 							pagination:{
 								el: '.swiper-pagination',
 								clickable:true,
@@ -2655,12 +2673,15 @@ var swiperUI = {
 									}else{
 										$activeClass = '.swiper-slide-active';
 									}
+									if($this.closest('.section_box_in').length && $this.closest('.section_box_in').prev('.loading_dimmed').length)$activeClass = '';
 									var $length = $swiper.pagination.bullets.length;
 									swiperUI.focusAria($this,$swiper.snapIndex,$itemLength-$length);
 								},
 								transitionEnd:function(e){
-									var $length = $swiper.pagination.bullets.length;
-									swiperUI.focusAria($this,$swiper.snapIndex,$itemLength-$length);
+									if($swiper != undefined){
+										var $length = $swiper.pagination.bullets.length;
+										swiperUI.focusAria($this,$swiper.snapIndex,$itemLength-$length);
+									}
 								}
 							}
 						};
@@ -2668,6 +2689,17 @@ var swiperUI = {
 						$this.data('idx',$swipeIdx);
 						var $swiper = new Swiper($this,$option);
 						swiperUI.array.push($swiper);
+
+						$this.on('click','.swiper-auto-ctl',function(e){
+							e.preventDefault();
+							if($(this).hasClass('play')){
+								$swiper.autoplay.start();
+								$(this).removeClass('play').find('.blind').changeTxt('시작','중지');
+							}else{
+								$swiper.autoplay.stop();
+								$(this).addClass('play').find('.blind').changeTxt('중지','시작');
+							}
+						});
 					}
 				}
 			});
