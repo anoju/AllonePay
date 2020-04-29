@@ -66,8 +66,8 @@
 .chk_item>.checkbox>i,
 .chk_item>.radio>input,
 .chk_item>.radio>i{left:15px;top:14px;}
-.chk_item>.checkbox>.lbl,
-.chk_item>.radio>.lbl{padding:14px 20px 14px 47px;margin-left:0;}
+.chk_item>.checkbox>i+.lbl,
+.chk_item>.radio>i+.lbl{padding:14px 20px 14px 47px;margin-left:0;}
 
 .chk_list .chk_item{border-radius:0;}
 .chk_list .chk_item:first-child{border-top-right-radius:4px;border-top-left-radius:4px;}
@@ -85,8 +85,7 @@
 .chk_list .chk_child>.checkbox+.checkbox{margin-top:13px;}
 .chk_list .chk_child>.checkbox>.lbl{font-size:1.4rem;color:#666;}
 .chk_list .chk_child>.checkbox>i{border-color:transparent !important;background:none !important;}
-.chk_list .chk_child>.checkbox>i:before{border-color:#bbbbbb;}
-.chk_list .chk_child>.checkbox>input:checked+i:before{border-color:#3182f7;}
+.chk_list .chk_child>.checkbox>input:checked+i:after{border-color:#3182f7;}
 .chk_list .chk_child>.checkbox>.chk_link{right:0;}
 
 /*검색*/
