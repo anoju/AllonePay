@@ -148,14 +148,6 @@
 					<label for="rad_inte_pym_acc_info_02"><span>직접입력</span></label>
 				</li>
 			</ul>
-			<br>
-			<ul class="btn_toggle grid col5 no_ico">
-				<li class="active"><a href="#">1일</a></li>
-				<li><a href="#">1개월</a></li>
-				<li><a href="#">3개월</a></li>
-				<li><a href="#">6개월</a></li>
-				<li><a href="#">1년</a></li>
-			</ul>
 
 			<h3 class="gd__h2">비활성화</h3>
 			<ul class="btn_toggle grid col3">
@@ -439,17 +431,25 @@
 				</div>
 			</div>
 			<div class="form_item error"><!-- error 클래스 -->
-				<label for="inputText4" class="fm_lb">error타입 1</label>
+				<label for="inputText4" class="fm_lb">여러개 error 표시 할때</label>
 				<div class="fm_cont">
 					<div class="input"><input type="text" id="inputText4" placeholder="내용을 입력하세요" value="입력된 내용입니다."></div>
+					<div class="input"><input type="text"placeholder="내용을 입력하세요" value="입력된 내용입니다."></div>
 					<div class="error_txt" style="display:block;">이름을 입력해주세요.</div><!-- 에러메세지 입력영역 -->
 				</div>
 			</div>
 			<div class="form_item">
-				<label for="inputText5" class="fm_lb">error타입 2</label>
+				<label for="inputText5" class="fm_lb">단일 error 표시 할때</label>
 				<div class="fm_cont">
 					<div class="input error"><input type="text" id="inputText5" placeholder="내용을 입력하세요" value="입력된 내용입니다."></div><!-- error 클래스 -->
 					<div class="error_txt" style="display:block;">이름을 입력해주세요.</div><!-- 에러메세지 입력영역 -->
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="inputText6" class="fm_lb">확인완료 타입</label>
+				<div class="fm_cont">
+					<div class="input checked"><input type="text" id="inputText6" placeholder="내용을 입력하세요" value="입력된 내용입니다."></div><!-- checked 클래스 -->
+					<div class="error_txt checked" style="display:block;">확인되었습니다.</div><!-- display:block;, checked 클래스 -->
 				</div>
 			</div>
 
@@ -652,6 +652,46 @@
 				</div>
 			</div>
 
+			<div class="form_item">
+				<label for="date2" class="fm_lb">날짜선택</label>
+				<div class="fm_cont">
+					<ul class="btn_toggle grid col5 ui-tab-rdo" data-hide="#datepickerTxt">
+						<li>
+							<input type="radio" id="date1M"" name="togDate" value="1" checked>
+							<label for="date1M"><span>1개월</span></label>
+						</li>
+						<li>
+							<input type="radio" id="date3M"" name="togDate" value="3">
+							<label for="date3M"><span>3개월</span></label>
+						</li>
+						<li>
+							<input type="radio" id="date6M"" name="togDate" value="6">
+							<label for="date6M"><span>6개월</span></label>
+						</li>
+						<li>
+							<input type="radio" id="date12M"" name="togDate" value="12">
+							<label for="date12M"><span>1년</span></label>
+						</li>
+						<li>
+							<input type="radio" id="dateEtc"" name="togDate" value="etc" data-show="#datepickerTxt">
+							<label for="dateEtc"><span>직접입력</span></label>
+						</li>
+					</ul>
+					<div id="datepickerTxt" class="datepicker_box hide">
+						<div class="tbl date_wrap"><!-- 달력 2개일때 data_wrap 클래스 필요-->
+							<div class="td">
+								<div class="input"><input type="tel" class="datepicker" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+							</div>
+							<div class="td dash">-</div>
+							<div class="td">
+								<div class="input"><input type="tel" class="datepicker" placeholder="YYYY.MM.DD" title="YYYY.MM.DD 형식으로 입력"></div>
+							</div>
+						</div>
+					</div>
+					<div class="error_txt">기간를 입력해주세요.</div><!-- 에러메세지 입력영역 -->
+				</div>
+			</div>
+
 			<h4 class="gd__h3">주민번호</h4>
 			<div class="form_item">
 				<label for="jumin1" class="fm_lb">주민등록번호</label>
@@ -786,14 +826,14 @@
 						</div>
 					</div>
 					<div class="error_txt">연락처를 입력해주세요.</div><!-- 에러메세지 입력영역 -->
-					<div class="tbl mt10">
+					<div class="tbl add_time_tbl mt10">
 						<div class="td">
 							<div class="input add_time">
 								<input type="tel" id="phoneNum2_3" title="인증번호 6자리 입력" placeholder="인증번호 6자리 입력" maxlength="6">
 								<span class="time">01:45</span>
 							</div>
 						</div>
-						<div class="td va_mid t_right w_140">
+						<div class="td">
 							<a href="#" class="button h32 line round">확인</a>
 							<a href="#" class="button h32 line round">시간연장</a>
 						</div>
@@ -958,9 +998,21 @@
 				<div class="fm_cont">
 					<div class="tbl">
 						<div class="td">
-							<div class="input"><input type="password" id="cardPW" placeholder="앞 2자리" title="카드 비밀번호 앞 2자리 입력"></div>
+							<div class="input"><input type="password" id="cardPW" placeholder="앞 2자리" title="카드 비밀번호 앞 2자리 입력" maxlength="2"></div>
 						</div>
 						<div class="td w_50 fc_gray3" aria-hidden="true">● ●</div>
+					</div>
+					<div class="error_txt">비밀번호를 입력해주세요.</div><!-- 에러메세지 입력영역 -->
+				</div>
+			</div>
+			<div class="form_item">
+				<label for="cardPW2" class="fm_lb">카드비밀번호</label>
+				<div class="fm_cont">
+					<div class="tbl">
+						<div class="td w_80">
+							<div class="input"><input type="password" id="cardPW2" class="t_center" placeholder="앞 2자리" title="카드 비밀번호 앞 2자리 입력" maxlength="2"></div>
+						</div>
+						<div class="td fc_gray3" aria-hidden="true">● ●</div>
 					</div>
 					<div class="error_txt">비밀번호를 입력해주세요.</div><!-- 에러메세지 입력영역 -->
 				</div>
