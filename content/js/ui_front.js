@@ -306,8 +306,8 @@ var Layer = {
 		//팝업그리기
 		Layer.alertHtml(type,$popId,$actionId,$cancelId);
 		if(!!option.title){
-			var $titleHtml = '<div class="pop_head"><h1>'+option.title+'</h1></div>';
-			$('#'+$popId).find('.pop_wrap').prepend($titleHtml);
+			var $titleHtml = '<div class="'+Layer.headClass+'"><h1>'+option.title+'</h1></div>';
+			$('#'+$popId).find('.'+Layer.wrapClass).prepend($titleHtml);
 		}
 		if(!!option.actionTxt)$('#'+$actionId).text(option.actionTxt);
 		if(!!option.cancelTxt)$('#'+$cancelId).text(option.cancelTxt);
@@ -526,6 +526,12 @@ var Layer = {
 			e.preventDefault();
 			var $tar = $(this).is('a') ? $(this).attr('href') : '#'+$(this).attr('for');
 			$($tar).next('.ui-select-open').focus().click();
+		});
+		$(document).on('click','.' +Layer.selectClass,function(e){
+			e.preventDefault();
+			Layer.close(this);
+		}).on('click','.'+Layer.wrapClass,function(e){
+			e.stopPropagation();
 		});
 		//건물면적
 		var layerSelectClose = function(target,isInp){
