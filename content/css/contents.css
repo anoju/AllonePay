@@ -143,5 +143,5 @@
 
 /*서비스신청*/
 .service_info{padding-top:18px;color:#111;text-align:center;font-size:0px;}
-.service_info .svc_icon{display:inline-block;overflow:hidden;width:88px;height:88px;box-shadow:none;background:url(../images/contents/img_verify1.png) 0 0 no-repeat;background-size:88px auto;}
+.service_info .svc_icon{display:inline-block;overflow:hidden;width:88px;height:88px;background:url(../images/contents/ico_svc1.png) 0 0 no-repeat;background-size:88px auto;}
 .service_info p{margin-top:28px;font-size:1.5rem;}
