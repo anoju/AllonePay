@@ -745,8 +745,8 @@ html.mobile .tbl_scroll::-webkit-scrollbar{display:none;}
 .i_ico_50{position:relative;width:50px;height:50px;background-color:#3182f7;border-radius:100%;background-size:50px auto;}
 .i_ico_50.ico_1:before{content:'';position:absolute;top:18px;left:50%;margin-left:-10px;display:block;box-sizing:border-box;width:20px;height:10px;border:3px solid #fff;border-top:none;border-right:none;-webkit-transform:rotate(-43deg);transform:rotate(-43deg);}
 .i_ico_88{width:88px;height:88px;background-color:#f8f8f8;border-radius:100%;background-size:88px auto;}
-.i_ico_88.ico_1{background-image:url(../images/contents/ico_svc1.png);}
-.i_ico_88.ico_2{background-image:url(../images/contents/ico_svc2.png);}
+.i_ico_88.ico_1{background-image:url(../images/common/ico_svc1.png);}
+.i_ico_88.ico_2{background-image:url(../images/common/ico_svc2.png);}
 
 /* scl_datepicker */
 .scl_cal_wrap{display:none;position:relative;margin-top:-4px;padding-top:4px;border:1px solid #ddd;border-top-width:0;overflow:hidden;}
