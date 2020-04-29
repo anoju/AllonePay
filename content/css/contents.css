@@ -145,8 +145,8 @@
 
 /*서비스신청*/
 .service_info{padding-top:18px;color:#111;text-align:center;font-size:0px;}
-.service_info p{margin-top:28px;font-size:1.5rem;}
-.complete_wrap{margin-bottom:26px;text-align:center;font-size:0;}
+.service_info .txt{margin-top:28px;font-size:1.5rem;}
+.complete_wrap{margin:18px 0 26px;text-align:center;font-size:0;}
 .complete_wrap .tit_h2{margin-top:17px;font-size:2.2rem;}
 .complete_wrap .txt{margin-bottom:12px;font-size:1.5rem;}
 .caution_txt{display:inline-block;font-size:1.3rem;color:#666;line-height:21px;}
