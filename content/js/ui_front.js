@@ -2436,7 +2436,7 @@ var accordion = {
 			});
 			if($(list).find('.'+addClass).length){
 				$(list).find('.'+addClass).each(function(){
-					$(this).find(btn).attr('aria-expanded',true);
+					$(this).find(btn).attr('aria-expanded',true).attr('title','현재열림');
 					$(this).find(panel).attr('aria-hidden',false).show();
 				});
 			}
@@ -2449,6 +2449,7 @@ var accordion = {
 			e.preventDefault();
 			var $this = $(this),
 				$panel = $this.attr('href');
+			if($panel == '#' && $this.closest('.accordion_list').length)$panel = $this.closest('.accordion_list').find('.panel');
 			if($this.hasClass(className)){
 				$this.removeClass(className).attr('aria-expanded',false).removeAttr('title');
 				$($panel).attr('aria-hidden',true).stop(true,false).slideUp(speed);
@@ -2465,6 +2466,7 @@ var accordion = {
 				var $btn = $(this),
 					$btnId = $(this).attr('id'),
 					$panel = $(this).attr('href');
+				if($panel == '#' && $btn.closest('.accordion_list').length)$panel = $btn.closest('.accordion_list').find('.panel');
 				if(!$btnId)$btnId = 'tg_btn_'+e;
 				$btn.attr({
 					'id': $btnId,
@@ -2482,6 +2484,7 @@ var accordion = {
 				}
 				//btn이 활성화면
 				if($(this).hasClass(className)){
+					$(this).attr('aria-expanded',true).attr('title','현재열림');
 					$($panel).attr('aria-hidden',false).show();
 				}
 			});
