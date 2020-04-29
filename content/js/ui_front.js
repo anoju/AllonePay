@@ -178,6 +178,9 @@ var deviceCheck = function(){
 };
 
 var common = {
+	layout:function(target){
+		if($('.btn_wrap.bottom_fixed').length)$('#container').addClass('add_fixed');
+	},
 	fixed:function(target){
 		//고정(fixed)
 		var $target = $(target);
