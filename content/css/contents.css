@@ -150,3 +150,17 @@
 .complete_wrap .txt{margin-bottom:12px;font-size:1.5rem;}
 .caution_txt{display:inline-block;font-size:1.3rem;color:#666;line-height:21px;}
 .caution_txt:before{content:'※';display:inline-block;padding-right:3px;color:#666;}
+
+/*리스트*/
+.list_ty1{border-top:1px solid #bbb;}
+.list_ty1>li{position:relative;border-bottom:1px solid #ddd;}
+.list_ty1 .inner{display:block;padding:21px 15px;}
+.list_ty1>li>.checkbox{position:absolute;left:1px;top:50%;margin-top:-11px;}
+.list_ty1>li>.checkbox+.inner{padding-left:34px;}
+.card_info_tbl{display:table;width:100%;}
+.card_info_tbl>div{display:table-cell;vertical-align:middle;}
+.card_info_tbl>.img{width:76px;}
+.card_info_tbl>.img img{max-width:100%;}
+.card_info_tbl>.img+div{padding-left:24px;}
+.card_info_tbl .tit{color:#111;}
+.card_info_tbl .sub{font-size:1.2rem;color:#666;}
