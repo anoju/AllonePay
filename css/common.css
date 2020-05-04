@@ -321,6 +321,7 @@ div.tit_h4 .tit{font-size:1.5rem;color:#111}
 .button.icon .bt_ic_arr{position:absolute;right:11px;top:50%;margin-top:-6px;}
 
 /* etc button */
+.btn_click{position:relative;overflow:hidden;}
 .btn_click_in{display:block;position:absolute;background:rgba(0,0,0,0.2);border-radius:100%;-webkit-transform:scale(0);transform:scale(0);}
 .btn_click_in.animate{-webkit-animation:btnClickEf 0.65s linear;animation:btnClickEf 0.65s linear;}
 @-webkit-keyframes btnClickEf{
@@ -599,6 +600,8 @@ html.ios.inpFocus .tab_wrap.fixed .tab_track{position:absolute;top:0;}
 .tab_rdo_panel.fade{-webkit-animation:fadeIn 0.3s;animation:fadeIn 0.3s;}
 
 /*icon*/
+.ico_new{display:inline-block;width:17px;height:17px;border-radius:50%;overflow:hidden;background:#3182f7 url(../img/common/ico_new.png) no-repeat center center;background-size:auto 7px;}
+
 .ico_txt{display:inline-block;background:#111;font-size:1rem;height:16px;line-height:16px;border-radius:11px;color:#fff;padding:0px 8px;vertical-align:middle;}
 .ico_txt.h22{height:22px;line-height:22px;font-size:1.2rem;}
 .ico_txt.red{background:#ff4019;}

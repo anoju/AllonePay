@@ -894,7 +894,7 @@ var buttonUI ={
 	},
 	effect: function(){
 		//버튼 클릭 효과
-		var btnInEfList = 'a.button, button.button';
+		var btnInEfList = 'a.button, button.button, .btn_click';
 		$(document).on('click', btnInEfList,function(e){
 			e.preventDefault();
 			var $btnEl = $(this),
