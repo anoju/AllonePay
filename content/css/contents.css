@@ -168,5 +168,6 @@
 .txt_box_content .txt_list li ul{font-size:1.4rem;color:#999;}
 .txt_box_content .txt_list li ul li{margin-top:4px;}
 .txt_box_content .txt_list li ul li:first-child{margin-top:0;}
-.txt_box_content img{width:100%;}
+.txt_box_content img{margin-top:20px;width:100%;}
+.txt_box_content .table{margin-top:24px;}
 .txt_box_content .table table th,.txt_box_content .table table td{padding:11px;text-align:center;border-width:0 0 1px 0;}
