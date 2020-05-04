@@ -177,3 +177,24 @@
 .line_list_2 .bg_noti{background:#eaf2fe;}
 .line_list_2 .txt_noti{color:#3182f7;font-weight:400;margin-right:0.3em;}
 .line_list_2 .ico_new{vertical-align:-3px;margin-left:0.3em;}
+
+/*공지사항*/
+.txt_box_head{padding-bottom:30px;border-bottom:1px solid #ddd;}
+.txt_box_head h2{padding-bottom:15px;font-size:1.5rem;color:#111;}
+.txt_box_head .date{color:#666;}
+.notice_wrap .file_box{padding:30px 0;border-bottom:1px solid #ddd;font-size:1.3rem;}
+.notice_wrap .file_box a{display: inline-block;}
+.notice_wrap .file_box .btn_download{display:inline-block;width:20px;height:15px;vertical-align:middle;background:url(../images/common/btn_down.png) center center no-repeat;background-size:11px auto;text-indent:-9999px;font-size:1px;color:transparent;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);}
+.txt_box_content h2{padding-top:30px;font-size:1.6rem;}
+.txt_box_content h3{padding-top:22px;font-size:1.5rem;font-weight:400;}
+.txt_box_content p{padding-top:17px;word-wrap:normal;word-break:break-all;}
+.txt_box_content p+.txt_list{padding-top:12px;}
+.txt_box_content .txt_list{color:#999;}
+.txt_box_content .txt_list .dot:before,
+.txt_box_content .txt_list li .dash:before{background:#999;}
+.txt_box_content .txt_list li ul{font-size:1.4rem;color:#999;}
+.txt_box_content .txt_list li ul li{margin-top:4px;}
+.txt_box_content .txt_list li ul li:first-child{margin-top:0;}
+.txt_box_content img{margin-top:20px;width:100%;}
+.txt_box_content .table{margin-top:24px;}
+.txt_box_content .table table th,.txt_box_content .table table td{padding:11px;text-align:center;border-width:0 0 1px 0;}
