@@ -184,7 +184,7 @@
 .txt_box_head .date{color:#666;}
 .notice_wrap .file_box{padding:30px 0;border-bottom:1px solid #ddd;font-size:1.3rem;}
 .notice_wrap .file_box a{display: inline-block;}
-.notice_wrap .file_box .btn_download{display:inline-block;width:20px;height:15px;vertical-align:middle;background:url(../images/common/btn_down.png) center center no-repeat;background-size:11px auto;text-indent:-9999px;font-size:1px;color:transparent;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);}
+.notice_wrap .file_box .btn_download{display:inline-block;width:20px;height:15px;vertical-align:middle;background:url(../img/common/btn_down.png) center center no-repeat;background-size:11px auto;text-indent:-9999px;font-size:1px;color:transparent;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);}
 .txt_box_content h2{padding-top:30px;font-size:1.6rem;}
 .txt_box_content h3{padding-top:22px;font-size:1.5rem;font-weight:400;}
 .txt_box_content p{padding-top:17px;word-wrap:normal;word-break:break-all;}
