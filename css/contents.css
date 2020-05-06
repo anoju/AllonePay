@@ -143,9 +143,9 @@
 .sel_item .del{position:absolute;top:50%;right:5px;display:inline-block;width:20px;height:20px;margin-top:-10px;vertical-align:middle;background:url(../img/common/inp_del.png);font-size:3px;color:transparent;background-size:contain;}
 
 /*서비스신청*/
-.service_info{padding-top:18px;color:#111;text-align:center;font-size:0px;}
-.service_info .txt{margin-top:28px;font-size:1.5rem;}
-.complete_wrap{margin:18px 0 26px;text-align:center;font-size:0;}
+.ico_box_wrap{padding-top:18px;color:#111;text-align:center;font-size:0px;}
+.ico_box_wrap .txt{margin-top:28px;font-size:1.5rem;}
+.complete_wrap{padding:18px 0 26px;text-align:center;font-size:0;}
 .complete_wrap .tit_h2{margin-top:17px;font-size:2.2rem;}
 .complete_wrap .txt{margin-bottom:12px;font-size:1.5rem;}
 .caution_txt{display:inline-block;font-size:1.3rem;color:#666;line-height:21px;}
